@@ -125,13 +125,7 @@ body{background:var(--bg);color:var(--secondary);font-family:'Inter',sans-serif;
 @media(min-width:900px){.news-grid{grid-template-columns:repeat(3,1fr)}}
 .news-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-card);transition:transform .25s,box-shadow .25s}
 .news-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
-.news-top{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:8px}
-.news-source{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
-.news-dot{width:4px;height:4px;border-radius:50%;background:var(--border);flex-shrink:0}
-.news-date{font-size:11px;color:var(--muted)}
-.news-body{padding:20px 16px}
-.news-bar{width:28px;height:3px;background:var(--primary);border-radius:2px;margin-bottom:12px}
-.news-hl{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;line-height:1.5;color:var(--secondary)}
+.news-card img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ── BODY TEXT ── */
 .prose{display:flex;flex-direction:column;gap:20px}
@@ -222,6 +216,10 @@ footer span{color:var(--primary)}
             <input class="input" type="email" name="email"     placeholder="Seu melhor e-mail">
             <input class="input" type="tel"   name="whatsapp"  placeholder="WhatsApp (00) 00000-0000">
             <button class="btn btn-w" type="button" onclick="submitForm(this)">QUERO ACESSAR A AULA</button>
+            <p class="form-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Acesso com vagas limitadas.
+            </p>
           </div>
         </div>
       </div>
@@ -263,37 +261,21 @@ footer span{color:var(--primary)}
     <div class="news-grid">
 
       <div class="news-card">
-        <div class="news-top">
-          <span class="news-source">InfoMoney</span>
-          <span class="news-dot"></span>
-          <span class="news-date">27 abr 2018</span>
-        </div>
-        <div class="news-body">
-          <div class="news-bar"></div>
-          <p class="news-hl">O custo da herança: herdeiros pagam valores próximos a 20% para ter acesso ao dinheiro</p>
-        </div>
+        <img src="https://gabaaum.github.io/captare-pages/planejamento-patrimonial/manchete1.png"
+             alt="O custo da herança: herdeiros pagam valores próximos a 20% para ter acesso ao dinheiro"
+             loading="lazy">
       </div>
 
       <div class="news-card">
-        <div class="news-top">
-          <span class="news-source">Notariado.org.br</span>
-        </div>
-        <div class="news-body">
-          <div class="news-bar"></div>
-          <p class="news-hl">Novas regras para ITCMD e ITBI entram em vigor e podem deixar heranças, doações e compras de imóveis mais caras</p>
-        </div>
+        <img src="https://gabaaum.github.io/captare-pages/planejamento-patrimonial/manchete2.png"
+             alt="Novas regras para ITCMD e ITBI entram em vigor e podem deixar heranças, doações e compras de imóveis mais caras"
+             loading="lazy">
       </div>
 
       <div class="news-card">
-        <div class="news-top">
-          <span class="news-source">Correio 24h</span>
-          <span class="news-dot"></span>
-          <span class="news-date">16 mai 2024</span>
-        </div>
-        <div class="news-body">
-          <div class="news-bar"></div>
-          <p class="news-hl">O preço da herança: custo do inventário pode chegar a 25% do valor dos bens deixados</p>
-        </div>
+        <img src="https://gabaaum.github.io/captare-pages/planejamento-patrimonial/manchete3.png"
+             alt="O preço da herança: custo do inventário pode chegar a 25% do valor dos bens deixados"
+             loading="lazy">
       </div>
 
     </div>
