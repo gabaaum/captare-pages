@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Planejamento Patrimonial e Sucessório | Webinário Gratuito — Porto &amp; Perottoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:         #f7f4f2;
+  --surface:    #eeeae6;
+  --card:       #ffffff;
+  --primary:    #b07625;
+  --primary-h:  #9b6626;
+  --primary-fg: #ffffff;
+  --secondary:  #242a37;
+  --muted:      #727b8c;
+  --border:     #e2dbd4;
+  --shadow-card: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.06);
+  --shadow-ele:  0 4px 24px rgba(0,0,0,.10);
+}
+
+body {
+  background: var(--bg);
+  color: var(--secondary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY HELPERS ── */
+.eyebrow {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--primary);
+}
+.serif { font-family: 'Playfair Display', serif; }
+.text-secondary { color: var(--secondary); }
+.text-muted { color: var(--muted); }
+.text-primary { color: var(--primary); }
+
+/* ── LAYOUT ── */
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.container-tight { width: 100%; max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+/* ── BUTTON ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+  background: var(--primary); color: var(--primary-fg);
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 15px 32px;
+  border: none; border-radius: 8px;
+  cursor: pointer; transition: background .2s, transform .15s;
+  text-decoration: none; white-space: nowrap;
+}
+.btn:hover { background: var(--primary-h); transform: translateY(-1px); }
+.btn-lg { font-size: 15px; padding: 17px 40px; }
+.btn-full { width: 100%; }
+
+/* ── BADGE PILL ── */
+.pill {
+  display: inline-flex; align-items: center;
+  background: var(--primary); color: var(--primary-fg);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 100px;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--secondary); text-decoration: none;
+}
+.nav-logo span { color: var(--primary); }
+.nav-cta { display: none; }
+@media (min-width: 640px) { .nav-cta { display: inline-flex; } }
+
+/* ── HERO ── */
+.hero {
+  margin-top: -64px;
+  background: var(--bg);
+  min-height: 100vh;
+}
+.hero-grid {
+  display: grid;
+  min-height: 100vh;
+}
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+}
+
+/* Mobile image (shown only < 1024px) */
+.hero-img-mobile {
+  position: relative;
+  padding-top: 64px;
+}
+@media (min-width: 1024px) { .hero-img-mobile { display: none; } }
+.hero-img-mobile img {
+  height: 55vw; max-height: 400px;
+  width: 100%; object-fit: cover;
+}
+.hero-img-mobile-fade {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 96px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+
+/* Hero content pane */
+.hero-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 48px 24px;
+}
+@media (min-width: 640px)  { .hero-content { padding: 48px 40px; } }
+@media (min-width: 1024px) { .hero-content { padding: 64px 64px 64px 80px; } }
+@media (min-width: 1280px) { .hero-content { padding: 64px 80px 64px 96px; } }
+
+.hero-inner { max-width: 520px; }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700; line-height: 1.1;
+  color: var(--secondary);
+  margin-top: 20px;
+}
+.hero-title span { color: var(--primary); }
+.hero-subtitle {
+  font-size: 17px; font-weight: 600;
+  color: var(--secondary); margin-top: 24px; line-height: 1.5;
+}
+.hero-desc {
+  font-size: 15px; color: var(--muted);
+  margin-top: 12px; line-height: 1.7;
+}
+
+/* Desktop image (shown only ≥ 1024px) */
+.hero-img-desktop {
+  display: none;
+  position: relative; min-height: 100vh;
+}
+@media (min-width: 1024px) { .hero-img-desktop { display: block; } }
+.hero-img-desktop img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.hero-img-desktop-fade {
+  position: absolute; inset-y: 0; left: 0; width: 160px;
+  background: linear-gradient(to right, var(--bg), transparent);
+  pointer-events: none; z-index: 1;
+}
+
+/* ── FORM ── */
+.form-wrap { margin-top: 32px; }
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+}
+.form-field { margin-bottom: 14px; }
+.form-field:last-of-type { margin-bottom: 0; }
+.form-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--secondary);
+  font-size: 15px; font-family: 'Inter', sans-serif;
+  outline: none; transition: border-color .2s;
+}
+.form-input::placeholder { color: var(--muted); }
+.form-input:focus { border-color: var(--primary); }
+.form-notice {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 12px;
+  font-size: 12px; color: var(--muted);
+}
+.form-notice svg { flex-shrink: 0; }
+
+/* ── SECTIONS ── */
+.section { padding: 80px 0; }
+@media (min-width: 768px) { .section { padding: 112px 0; } }
+.section-bg { background: var(--bg); }
+.section-surface { background: var(--surface); }
+.section-gradient { background: linear-gradient(135deg, var(--secondary) 0%, #1a2030 100%); color: #fff; }
+
+/* Section heading group */
+.section-head { margin-bottom: 48px; }
+.section-head.center { text-align: center; }
+.section-head .title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700; line-height: 1.2;
+  color: var(--secondary);
+  margin-top: 12px;
+}
+.section-head .subtitle { font-size: 17px; color: var(--muted); margin-top: 16px; }
+
+/* ── NEWS CARDS ── */
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 640px)  { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.news-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform .25s, box-shadow .25s;
+}
+.news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-ele); }
+.news-source-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.news-source {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--primary);
+}
+.news-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+.news-date { font-size: 11px; color: var(--muted); }
+.news-body { padding: 20px 16px; }
+.news-bar { width: 28px; height: 3px; background: var(--primary); border-radius: 2px; margin-bottom: 12px; }
+.news-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; line-height: 1.5; font-weight: 600;
+  color: var(--secondary);
+}
+
+/* ── BODY TEXT ── */
+.body-text { display: flex; flex-direction: column; gap: 20px; }
+.body-text p { font-size: 17px; color: var(--muted); line-height: 1.85; }
+.body-text p strong { color: var(--secondary); font-weight: 600; }
+.body-text p.bold { color: var(--secondary); font-weight: 600; font-size: 17px; }
+
+/* 3-column numbered cards */
+.numbered-cards {
+  display: grid;
+  gap: 16px;
+  margin: 40px 0;
+}
+@media (min-width: 640px) { .numbered-cards { grid-template-columns: repeat(3, 1fr); } }
+.num-card {
+  border-left: 4px solid var(--primary);
+  background: var(--surface);
+  border-radius: 0 12px 12px 0;
+  padding: 24px 20px;
+  color: var(--secondary);
+}
+.num-card .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; color: var(--primary); line-height: 1;
+}
+.num-card p { margin-top: 12px; font-weight: 600; font-size: 15px; line-height: 1.45; }
+
+/* ── PARA QUEM É ── */
+.for-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.for-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: var(--shadow-card);
+}
+.for-icon {
+  flex-shrink: 0; margin-top: 2px;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+}
+.for-item p { font-size: 15px; color: var(--secondary); line-height: 1.65; }
+
+/* ── SOLUTION/WEBINAR ── */
+.webinar-highlight {
+  font-style: italic; color: var(--primary);
+}
+
+/* ── EQUIPE SECTION ── */
+.equipe-grid {
+  display: grid; gap: 48px; align-items: center;
+}
+@media (min-width: 768px) {
+  .equipe-grid { grid-template-columns: 1fr 1fr; }
+}
+.equipe-img-wrap {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ele);
+  order: 2;
+}
+@media (min-width: 768px) { .equipe-img-wrap { order: 1; } }
+.equipe-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.equipe-text { order: 1; }
+@media (min-width: 768px) { .equipe-text { order: 2; } }
+.equipe-text .body-text p { font-size: 16px; }
+
+/* ── FINAL CTA ── */
+.cta-grid {
+  display: grid; gap: 48px; align-items: start;
+}
+@media (min-width: 768px) { .cta-grid { grid-template-columns: 1fr 1fr; } }
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700; line-height: 1.2;
+  color: #fff;
+}
+.cta-body { font-size: 17px; color: rgba(255,255,255,.85); margin-top: 20px; line-height: 1.7; }
+.cta-note { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.9); margin-top: 16px; }
+.form-card-dark {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.form-input-dark {
+  width: 100%;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 15px; font-family: 'Inter', sans-serif;
+  outline: none; transition: border-color .2s;
+  margin-bottom: 12px;
+}
+.form-input-dark::placeholder { color: rgba(255,255,255,.5); }
+.form-input-dark:focus { border-color: rgba(255,255,255,.6); }
+.btn-light {
+  background: #fff; color: var(--secondary);
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 15px 32px; border: none; border-radius: 8px;
+  cursor: pointer; width: 100%; transition: background .2s, transform .15s;
+}
+.btn-light:hover { background: #f0ece8; transform: translateY(-1px); }
+.form-notice-dark {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 12px;
+  font-size: 12px; color: rgba(255,255,255,.55);
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--secondary); color: rgba(255,255,255,.5);
+  text-align: center; padding: 24px;
+  font-size: 13px;
+}
+.footer span { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Porto <span>&amp;</span> Perottoni</a>
+    <a href="#cta" class="btn nav-cta">Garantir minha vaga</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid">
+
+    <!-- Mobile photo -->
+    <div class="hero-img-mobile">
+      <img src="https://reform-guide.lovable.app/assets/socios-porto-perottoni-DX9LHp_9.png"
+           alt="Sócios Porto &amp; Perottoni" loading="eager">
+      <div class="hero-img-mobile-fade"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <div class="hero-inner">
+        <span class="pill">Webinário Online e Gratuito</span>
+        <h1 class="hero-title">
+          Se algo acontecer com você amanhã, a sua família sabe exatamente o que fazer com o seu
+          <span>patrimônio</span>?
+        </h1>
+        <p class="hero-subtitle">Acesse a aula gratuita sobre Planejamento Patrimonial e Sucessório</p>
+        <p class="hero-desc">Descubra como proteger seus bens, evitar inventários desgastantes e garantir que o que você construiu chegue às pessoas certas, do jeito certo.</p>
+
+        <div class="form-wrap">
+          <div class="form-card" id="hero-form">
+            <div class="form-field">
+              <input class="form-input" type="text" name="nome" placeholder="Seu nome completo" maxlength="100" />
+            </div>
+            <div class="form-field">
+              <input class="form-input" type="email" name="email" placeholder="Seu melhor e-mail" />
+            </div>
+            <div class="form-field">
+              <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp (00) 00000-0000" />
+            </div>
+            <button class="btn btn-full" type="button" onclick="submitForm(this)">QUERO ACESSAR A AULA</button>
+            <p class="form-notice">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Acesso com vagas limitadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop photo -->
+    <div class="hero-img-desktop">
+      <img src="https://reform-guide.lovable.app/assets/socios-porto-perottoni-DX9LHp_9.png"
+           alt="Sócios Porto &amp; Perottoni" loading="eager">
+      <div class="hero-img-desktop-fade"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MANCHETES
+════════════════════════════════════════ -->
+<section class="section section-surface">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Autoridade na mídia</p>
+      <h2 class="title serif">O que a mídia está alertando</h2>
+      <p class="subtitle">Você já deve ter visto manchetes como essas. E provavelmente sentiu aquele desconforto de quem sabe que algo grande está acontecendo, mas ainda não consegue medir o tamanho do impacto.</p>
+    </div>
+
+    <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-source-bar">
+          <span class="news-source">InfoMoney</span>
+          <span class="news-dot"></span>
+          <span class="news-date">27 abr 2018</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">O custo da herança: herdeiros pagam valores próximos a 20% para ter acesso ao dinheiro</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-source-bar">
+          <span class="news-source">Notariado.org.br</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">Novas regras para ITCMD e ITBI entram em vigor e podem deixar heranças, doações e compras de imóveis mais caras</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-source-bar">
+          <span class="news-source">Correio 24h</span>
+          <span class="news-dot"></span>
+          <span class="news-date">16 mai 2024</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">O preço da herança: custo do inventário pode chegar a 25% do valor dos bens deixados</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROBLEMA / TRANSIÇÃO
+════════════════════════════════════════ -->
+<section class="section section-bg">
+  <div class="container-tight">
+
+    <p class="eyebrow">O problema</p>
+    <h2 class="serif" style="font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.2;color:var(--secondary);margin-top:12px;margin-bottom:40px;">
+      Você já viu as manchetes.<br>Mas o desafio não está no texto da lei.
+    </h2>
+
+    <div class="body-text">
+      <p>Você provavelmente já ouviu histórias assim:</p>
+    </div>
+
+    <div class="numbered-cards">
+      <div class="num-card">
+        <div class="num">01</div>
+        <p>Uma família que passou anos brigando na justiça por causa de um imóvel.</p>
+      </div>
+      <div class="num-card">
+        <div class="num">02</div>
+        <p>Um inventário que levou mais tempo do que o casamento.</p>
+      </div>
+      <div class="num-card">
+        <div class="num">03</div>
+        <p>Herdeiros que precisaram vender patrimônio às pressas para pagar impostos que ninguém previu.</p>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>E a maioria dessas situações tem algo em comum: ninguém planejou. A vida seguiu, o patrimônio cresceu, as relações familiares ficaram mais complexas, e o assunto foi sendo adiado.</p>
+      <p>Porque é desconfortável, porque parece coisa para depois, porque existe a ilusão de que ainda dá tempo.</p>
+      <p>Só que a legislação tributária brasileira não está esperando ninguém. O ITCMD já está sendo revisado em diversos estados, com alíquotas progressivas que podem chegar a 8%.</p>
+      <p>A Reforma Tributária traz mudanças que impactam diretamente a forma como bens são transmitidos, doados e tributados.</p>
+      <p>E as regras para holdings familiares, testamentos e doações em vida estão cada vez mais exigentes.</p>
+      <p><strong>O custo de não fazer nada cresce a cada ano. E quando o momento chega</strong> — um falecimento, uma separação, um problema judicial — as decisões deixam de ser suas.</p>
+      <p>Passam para um juiz, para o Estado ou para herdeiros em conflito. E nessa hora, o que poderia ser resolvido com planejamento vira um processo caro, demorado e emocionalmente devastador.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PARA QUEM É
+════════════════════════════════════════ -->
+<section class="section section-surface">
+  <div class="container-tight">
+    <div class="section-head">
+      <p class="eyebrow">Para quem é</p>
+      <h2 class="title serif">Este webinário foi pensado para você</h2>
+      <p class="subtitle">Seja honesto consigo mesmo antes de garantir sua vaga.</p>
+    </div>
+
+    <ul class="for-list">
+      <li class="for-item">
+        <div class="for-icon">✓</div>
+        <p>Empresários e donos de negócio que acumularam patrimônio ao longo dos anos (imóveis, participações societárias, investimentos) e nunca estruturaram um plano para proteger esses bens e organizar a sucessão.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-icon">✓</div>
+        <p>Profissionais liberais e investidores que sabem que precisam agir, mas não têm certeza de por onde começar, qual estrutura faz sentido para o seu caso e o que realmente vale a pena.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-icon">✓</div>
+        <p>Pessoas e famílias que já passaram pela experiência de um inventário difícil (ou que viram de perto o desgaste que a falta de planejamento causa) e não querem repetir esse cenário.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-icon">✓</div>
+        <p>Quem tem patrimônio em diferentes estruturas (pessoa física, empresas, investimentos no exterior) e precisa entender como integrar tudo em um plano coerente e seguro.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-icon">✓</div>
+        <p>Qualquer pessoa que entende que proteger patrimônio não é coisa de milionário — é responsabilidade de quem construiu algo e quer que isso perdure.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     A SOLUÇÃO / WEBINÁRIO
+════════════════════════════════════════ -->
+<section class="section section-bg">
+  <div class="container-tight">
+    <p class="eyebrow">A solução</p>
+    <h2 class="serif" style="font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.2;color:var(--secondary);margin-top:12px;margin-bottom:32px;">
+      Foi para mudar esse cenário que a Porto &amp; Perottoni criou o
+      <span style="color:var(--primary);font-style:italic;">"Planejamento Patrimonial e Sucessório: tudo que você precisa saber"</span>.
+    </h2>
+
+    <div class="body-text">
+      <p>Em uma aula única, vamos apresentar, de forma clara e acessível, como funciona o planejamento patrimonial na prática: sem juridiquês, sem teoria desnecessária e sem soluções genéricas.</p>
+      <p>Você vai entender como o seu patrimônio seria tratado hoje, caso algo acontecesse, e o que pode ser feito agora para mudar esse cenário. Vamos abordar desde os fundamentos — regimes de bens, riscos sucessórios, diferença entre inventário judicial e extrajudicial — até as estruturas mais avançadas, como holdings familiares, doações em vida e cláusulas de proteção.</p>
+      <p><strong>O objetivo é simples: que você saia desse webinário com clareza sobre onde estão os riscos no seu patrimônio</strong> e quais são os caminhos para proteger a sua família, reduzir custos tributários e garantir que a transferência dos seus bens aconteça da forma que você decidiu, e não da forma que a lei impõe quando ninguém decide.</p>
+    </div>
+
+    <div style="margin-top:40px;">
+      <a href="#cta" class="btn btn-lg">GARANTIR MINHA VAGA</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     QUEM É A PORTO & PEROTTONI
+════════════════════════════════════════ -->
+<section class="section section-surface">
+  <div class="container">
+    <div class="equipe-grid">
+
+      <div class="equipe-img-wrap">
+        <img src="https://reform-guide.lovable.app/assets/equipe-porto-perottoni-BafcCDPg.png"
+             alt="Equipe Porto &amp; Perottoni" loading="lazy">
+      </div>
+
+      <div class="equipe-text">
+        <p class="eyebrow">Quem somos</p>
+        <h2 class="serif" style="font-size:clamp(26px,3.5vw,38px);font-weight:700;line-height:1.2;color:var(--secondary);margin-top:12px;margin-bottom:24px;">
+          Quem é a Porto &amp; Perottoni?
+        </h2>
+
+        <div class="body-text equipe-text">
+          <p>A Porto &amp; Perottoni é um escritório que integra advocacia e contabilidade tributária em uma única estrutura, com foco em planejamento patrimonial, sucessório e tributário estratégico.</p>
+          <p>Essa integração existe por um motivo prático: patrimônio não é só questão jurídica. Envolve tributação, estrutura societária, regime de bens, operações financeiras e, acima de tudo, decisões que impactam pessoas reais. Tratar esses temas de forma separada é o que leva à maioria dos erros que vemos no mercado — soluções parciais, que resolvem um lado e criam problema no outro.</p>
+          <p>Com anos de experiência e centenas de casos conduzidos, a Porto &amp; Perottoni construiu uma reputação baseada em <strong>rigor técnico, didática e, principalmente, resultados concretos</strong>. Os clientes que passam pela orientação do escritório costumam dizer a mesma coisa: que encontraram segurança para tomar decisões que vinham adiando há anos.</p>
+          <p>Este webinário é uma extensão direta desse trabalho. O mesmo nível de profundidade e cuidado que aplicamos em consultoria individual, agora em um formato acessível para quem quer dar o primeiro passo com clareza.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════ -->
+<section class="section section-gradient" id="cta">
+  <div class="container">
+    <div class="cta-grid">
+
+      <div>
+        <h2 class="cta-title">Patrimônio se constrói ao longo de uma vida. Mas, sem planejamento, pode se perder em uma única decisão.</h2>
+        <p class="cta-body">Ou na ausência dela.</p>
+        <p class="cta-note">Esta aula é gratuita, mas as vagas são limitadas.</p>
+      </div>
+
+      <div>
+        <div class="form-card-dark">
+          <input class="form-input-dark" type="text" name="nome" placeholder="Seu nome completo" maxlength="100" />
+          <input class="form-input-dark" type="email" name="email" placeholder="Seu melhor e-mail" />
+          <input class="form-input-dark" type="tel" name="whatsapp" placeholder="WhatsApp (00) 00000-0000" />
+          <button class="btn-light" type="button" onclick="submitFormCta(this)">QUERO PARTICIPAR!</button>
+          <p class="form-notice-dark">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Acesso com vagas limitadas.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  &copy; 2025 <span>Porto &amp; Perottoni</span>. Todos os direitos reservados.
+</footer>
+
+<script>
+function getFormData(btn) {
+  const wrap = btn.closest('.form-card, .form-card-dark')
+  const nome = wrap.querySelector('[name="nome"]').value.trim()
+  const email = wrap.querySelector('[name="email"]').value.trim()
+  const whatsapp = wrap.querySelector('[name="whatsapp"]').value.trim()
+  return { nome, email, whatsapp }
+}
+
+function submitForm(btn) {
+  const data = getFormData(btn)
+  if (!data.nome || !data.email || !data.whatsapp) {
+    alert('Por favor, preencha todos os campos.')
+    return
+  }
+  sendToSheety(data, btn)
+}
+function submitFormCta(btn) { submitForm(btn) }
+
+async function sendToSheety(data, btn) {
+  const original = btn.textContent
+  btn.textContent = 'Enviando...'
+  btn.disabled = true
+  try {
+    await fetch('https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/leadsPortoPerottoni/página1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ página1: { nome: data.nome, email: data.email, whatsapp: data.whatsapp } })
+    })
+    btn.textContent = '✓ Vaga garantida!'
+    btn.style.background = btn.closest('.form-card-dark') ? '#4ade80' : '#16a34a'
+    btn.style.color = '#fff'
+  } catch (e) {
+    btn.textContent = original
+    btn.disabled = false
+    alert('Erro ao enviar. Tente novamente.')
+  }
+}
+</script>
+</body>
+</html>
