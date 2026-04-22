@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Planejamento Patrimonial e Sucessório — Porto & Perottoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #08101E;
+    --navy-2: #0D1929;
+    --navy-3: #112034;
+    --gold: #C4A35A;
+    --gold-light: #D4B87A;
+    --gold-pale: rgba(196,163,90,0.12);
+    --white: #FFFFFF;
+    --gray: #A0AABA;
+    --gray-light: #C8D0DA;
+    --border: rgba(196,163,90,0.2);
+  }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0D1929 0%, #08101E 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 24px 80px;
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .logo-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 48px;
+  }
+
+  /* ── FORM ── */
+  .form-card {
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .form-card label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+  .form-card label:first-of-type { margin-top: 0; }
+  .form-card input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(196,163,90,0.25);
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-card input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-card input:focus { border-color: var(--gold); }
+  .btn-primary {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── SECTION ── */
+  .section { padding: 80px 24px; }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+  .section-alt { background: var(--navy-2); }
+
+  /* ── NEWS CARDS ── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+  .news-card {
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .news-header {
+    background: rgba(196,163,90,0.08);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .news-source {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .news-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+  .news-date { font-size: 11px; color: var(--gray); }
+  .news-body { padding: 16px 14px; }
+  .news-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--gray-light);
+    font-weight: 600;
+  }
+  .news-bar {
+    width: 28px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-text p {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .body-text p strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .bullet-list {
+    list-style: none;
+    margin: 0 0 24px;
+  }
+  .bullet-list li {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.7;
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 32px;
+  }
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  /* ── WEBINAR BOX ── */
+  .webinar-box {
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+    margin-bottom: 32px;
+  }
+  .webinar-box p {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .webinar-box p:last-of-type { margin-bottom: 0; }
+
+  /* ── WHO IS FOR ── */
+  .for-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .for-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .for-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .for-item p {
+    font-size: 15px;
+    color: var(--gray-light);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── ABOUT ── */
+  .about-box {
+    background: var(--navy-3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+  }
+  .about-box p {
+    font-size: 16px;
+    color: var(--gray-light);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+  .about-box p:last-of-type { margin-bottom: 0; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(160deg, var(--navy-3) 0%, var(--navy-2) 100%);
+    border-top: 1px solid var(--border);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .final-cta p {
+    font-size: 16px;
+    color: var(--gray-light);
+    max-width: 600px;
+    margin: 0 auto 12px;
+    line-height: 1.7;
+  }
+  .final-cta .notice {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 16px;
+  }
+  .btn-center {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 17px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-center:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  @media (max-width: 600px) {
+    .form-card { padding: 28px 20px; }
+    .webinar-box { padding: 28px 22px; }
+    .about-box { padding: 28px 22px; }
+    .for-item { padding: 16px 18px; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="logo-badge">Porto &amp; Perottoni</div>
+    <h1>Se algo acontecer com você amanhã, a sua família sabe exatamente o que fazer com o seu <em>patrimônio</em>?</h1>
+    <p class="hero-sub">Acesse a aula gratuita sobre Planejamento Patrimonial e Sucessório e descubra como proteger seus bens, evitar inventários desgastantes e garantir que o que você construiu chegue às pessoas certas, do jeito certo.</p>
+
+    <div class="form-card">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" />
+
+      <label for="email">Melhor e-mail</label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com" />
+
+      <label for="whatsapp">WhatsApp</label>
+      <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" />
+
+      <button class="btn-primary" type="submit">QUERO ACESSAR A AULA</button>
+    </div>
+  </div>
+</section>
+
+<!-- MANCHETES -->
+<section class="section">
+  <div class="section-inner">
+    <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-header">
+          <span class="news-source">InfoMoney</span>
+          <span class="news-dot"></span>
+          <span class="news-date">27 abr 2018</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">O custo da herança: herdeiros pagam valores próximos a 20% para ter acesso ao dinheiro</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-header">
+          <span class="news-source">Notariado.org.br</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">Novas regras para ITCMD e ITBI entram em vigor e podem deixar heranças, doações e compras de imóveis mais caras</p>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-header">
+          <span class="news-source">Correio 24h</span>
+          <span class="news-dot"></span>
+          <span class="news-date">16 mai 2024</span>
+        </div>
+        <div class="news-body">
+          <div class="news-bar"></div>
+          <p class="news-headline">O preço da herança: custo do inventário pode chegar a 25% do valor dos bens deixados</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CORPO DO TEXTO -->
+    <div class="body-text">
+      <p>Você provavelmente já ouviu histórias assim:</p>
+      <ul class="bullet-list">
+        <li>Uma família que passou anos brigando na justiça por causa de um imóvel.</li>
+        <li>Um inventário que levou mais tempo do que o casamento.</li>
+        <li>Herdeiros que precisaram vender patrimônio às pressas para pagar impostos que ninguém previu.</li>
+      </ul>
+      <p>E a maioria dessas situações tem algo em comum: ninguém planejou. A vida seguiu, o patrimônio cresceu, as relações familiares ficaram mais complexas, e o assunto foi sendo adiado.</p>
+      <p>Porque é desconfortável, porque parece coisa para depois, porque existe a ilusão de que ainda dá tempo.</p>
+      <p>Só que a legislação tributária brasileira não está esperando ninguém. O ITCMD já está sendo revisado em diversos estados, com alíquotas progressivas que podem chegar a 8%.</p>
+      <p>A Reforma Tributária traz mudanças que impactam diretamente a forma como bens são transmitidos, doados e tributados.</p>
+      <p>E as regras para holdings familiares, testamentos e doações em vida estão cada vez mais exigentes.</p>
+      <p>O custo de não fazer nada cresce a cada ano. E quando o momento chega: um falecimento, uma separação, um problema judicial, as decisões deixam de ser suas.</p>
+      <p>Passam para um juiz, para o Estado ou para herdeiros em conflito. E nessa hora, o que poderia ser resolvido com planejamento vira um processo caro, demorado e emocionalmente devastador.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WEBINAR -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">O webinário</p>
+    <h2 class="section-title">Foi para mudar esse cenário que a Porto &amp; Perottoni criou o "Planejamento Patrimonial e Sucessório: tudo que você precisa saber".</h2>
+    <div class="divider"></div>
+
+    <div class="webinar-box">
+      <p>Em uma aula única, vamos apresentar, de forma clara e acessível, como funciona o planejamento patrimonial na prática: sem juridiquês, sem teoria desnecessária e sem soluções genéricas.</p>
+      <p>Você vai entender como o seu patrimônio seria tratado hoje, caso algo acontecesse, e o que pode ser feito agora para mudar esse cenário. Vamos abordar desde os fundamentos, regimes de bens, riscos sucessórios, diferença entre inventário judicial e extrajudicial, até as estruturas mais avançadas, como holdings familiares, doações em vida e cláusulas de proteção.</p>
+      <p>O objetivo é simples: que você saia desse webinário com clareza sobre onde estão os riscos no seu patrimônio e quais são os caminhos para proteger a sua família, reduzir custos tributários e garantir que a transferência dos seus bens aconteça da forma que você decidiu, e não da forma que a lei impõe quando ninguém decide.</p>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="btn-center" type="button">GARANTIR MINHA VAGA</button>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Para quem é</p>
+    <h2 class="section-title">Este webinário foi pensado para:</h2>
+    <div class="divider"></div>
+
+    <ul class="for-list">
+      <li class="for-item">
+        <span class="for-arrow">→</span>
+        <p>Empresários e donos de negócio que acumularam patrimônio ao longo dos anos (imóveis, participações societárias, investimentos) e nunca estruturaram um plano para proteger esses bens e organizar a sucessão.</p>
+      </li>
+      <li class="for-item">
+        <span class="for-arrow">→</span>
+        <p>Profissionais liberais e investidores que sabem que precisam agir, mas não têm certeza de por onde começar, qual estrutura faz sentido para o seu caso e o que realmente vale a pena.</p>
+      </li>
+      <li class="for-item">
+        <span class="for-arrow">→</span>
+        <p>Pessoas e famílias que já passaram pela experiência de um inventário difícil (ou que viram de perto o desgaste que a falta de planejamento causa) e não querem repetir esse cenário.</p>
+      </li>
+      <li class="for-item">
+        <span class="for-arrow">→</span>
+        <p>Quem tem patrimônio em diferentes estruturas (pessoa física, empresas, investimentos no exterior) e precisa entender como integrar tudo em um plano coerente e seguro.</p>
+      </li>
+      <li class="for-item">
+        <span class="for-arrow">→</span>
+        <p>Qualquer pessoa que entende que proteger patrimônio não é coisa de milionário, é responsabilidade de quem construiu algo e quer que isso perdure.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUEM É -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">Quem é</p>
+    <h2 class="section-title">QUEM É A PORTO &amp; PEROTTONI</h2>
+    <div class="divider"></div>
+
+    <div class="about-box">
+      <p>A Porto &amp; Perottoni é um escritório que integra advocacia e contabilidade tributária em uma única estrutura, com foco em planejamento patrimonial, sucessório e tributário estratégico.</p>
+      <p>Essa integração existe por um motivo prático: patrimônio não é só questão jurídica. Envolve tributação, estrutura societária, regime de bens, operações financeiras e, acima de tudo, decisões que impactam pessoas reais. Tratar esses temas de forma separada é o que leva à maioria dos erros que vemos no mercado, soluções parciais, que resolvem um lado e criam problema no outro.</p>
+      <p>Com anos de experiência e centenas de casos conduzidos, a Porto &amp; Perottoni construiu uma reputação baseada em rigor técnico, didática e, principalmente, resultados concretos. Os clientes que passam pela orientação do escritório costumam dizer a mesma coisa: que encontraram segurança para tomar decisões que vinham adiando há anos.</p>
+      <p>Este webinário é uma extensão direta desse trabalho.</p>
+      <p>O mesmo nível de profundidade e cuidado que aplicamos em consultoria individual, agora em um formato acessível para quem quer dar o primeiro passo com clareza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-inner">
+    <p>Patrimônio se constrói ao longo de uma vida. Mas, sem planejamento, pode se perder em uma única decisão, ou na ausência dela.</p>
+    <p class="notice">Esta aula é gratuita, mas as vagas são limitadas.</p>
+    <br/>
+    <button class="btn-center" type="button">QUERO PARTICIPAR!</button>
+  </div>
+</section>
+
+</body>
+</html>
