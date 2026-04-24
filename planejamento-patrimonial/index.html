@@ -52,7 +52,7 @@ body{background:var(--bg);color:var(--secondary);font-family:'Inter',sans-serif;
 .pill{display:inline-flex;align-items:center;background:var(--primary);color:var(--primary-f);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px}
 
 /* ══════════════════════════════════════
-   HERO  —  exact same structure as reference
+   HERO - exact same structure as reference
    -mt-16 accounts for fixed nav (64px)
 ══════════════════════════════════════ */
 .hero{margin-top:-64px;background:var(--hero-bg)}
@@ -93,7 +93,7 @@ body{background:var(--bg);color:var(--secondary);font-family:'Inter',sans-serif;
 .form-note{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--muted)}
 
 /* ══════════════════════════════════════
-   BLURRED BANNER  —  same as reference wb()
+   BLURRED BANNER - same as reference wb()
    (uses equipe photo, dark overlay, centered text)
 ══════════════════════════════════════ */
 .banner{position:relative;height:280px;overflow:hidden}
@@ -184,7 +184,7 @@ footer span{color:var(--primary)}
 </nav>
 
 <!-- ══════════════════════════════════════
-     HERO  —  igual ao reform-guide.lovable.app
+     HERO - igual ao reform-guide.lovable.app
      Esquerda: conteúdo + form
      Direita (desktop): foto sem blur, fade à esquerda
      Mobile: foto full-width topo + fade
@@ -239,7 +239,7 @@ footer span{color:var(--primary)}
 </section>
 
 <!-- ══════════════════════════════════════
-     BLURRED BANNER  —  igual ao wb() do reform-guide
+     BLURRED BANNER - igual ao wb() do reform-guide
      Foto borrada + overlay escuro + texto centralizado
 ══════════════════════════════════════ -->
 <div class="banner">
@@ -439,36 +439,42 @@ footer span{color:var(--primary)}
 </footer>
 
 <script>
+var WEBHOOK = 'https://aplicativos-n8n.z6levt.easypanel.host/webhook/portoperottoni-patrimonial'
+var OBRIGADO = 'https://gabaaum.github.io/captare-pages/porto-perottoni-patrimonial/obrigado.html'
+
 function submitForm(btn) {
-  const wrap = btn.closest('.form-card,.form-dark')
-  const nome     = wrap.querySelector('[name="nome"]').value.trim()
-  const email    = wrap.querySelector('[name="email"]').value.trim()
-  const whatsapp = wrap.querySelector('[name="whatsapp"]').value.trim()
+  var wrap = btn.closest('.form-card,.form-dark')
+  var nome     = wrap.querySelector('[name="nome"]').value.trim()
+  var email    = wrap.querySelector('[name="email"]').value.trim()
+  var whatsapp = wrap.querySelector('[name="whatsapp"]').value.trim()
 
   if (!nome || !email || !whatsapp) {
     alert('Por favor, preencha todos os campos.')
     return
   }
 
-  const orig = btn.textContent
+  var orig = btn.textContent
   btn.textContent = 'Enviando...'
   btn.disabled = true
 
-  fetch('https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/leadsPortoPerottoni/página1', {
+  fetch(WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ página1: { nome, email, whatsapp } })
+    body: JSON.stringify({
+      nome: nome,
+      email: email,
+      whatsapp: whatsapp,
+      origem: 'landing-planejamento-patrimonial',
+      submittedAt: new Date().toISOString()
+    })
   })
-  .then(() => {
-    btn.textContent = '✓ Vaga garantida!'
-    const isDark = !!btn.closest('.form-dark')
-    btn.style.background = isDark ? '#4ade80' : '#16a34a'
-    if (isDark) btn.style.color = '#fff'
+  .then(function() {
+    window.open(OBRIGADO, '_top')
   })
-  .catch(() => {
+  .catch(function() {
     btn.textContent = orig
     btn.disabled = false
-    alert('Erro ao enviar. Tente novamente.')
+    alert('Não foi possível enviar agora. Tente novamente em instantes.')
   })
 }
 </script>
