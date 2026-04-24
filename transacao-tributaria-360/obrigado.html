@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inscrição Confirmada | Transação Tributária 360°</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0b1541;
+  --navy-d:  #080f30;
+  --orange:  #ff944f;
+  --orange-h:#e87c38;
+  --light:   #f0f1f0;
+  --dark:    #222023;
+  --muted:   #5a5a6a;
+  --border:  #dcdce0;
+  --white:   #ffffff;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HERO NAVY */
+.hero {
+  background: var(--navy);
+  padding: 64px 24px 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, #172561 0%, var(--navy) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Check badge */
+.check-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,148,79,.15);
+  border: 2px solid rgba(255,148,79,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  color: var(--orange);
+}
+
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 4.5vw, 44px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 20px;
+}
+h1 em { font-style: normal; color: var(--orange); }
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255,255,255,.75);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 40px;
+}
+
+/* Confirmation card (overlaps hero) */
+.confirm-card-wrap {
+  max-width: 600px;
+  margin: -60px auto 0;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+}
+.confirm-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 12px 48px rgba(11,21,65,.14);
+  border-top: 4px solid var(--orange);
+}
+.confirm-card h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+.order-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--light);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.order-row span:last-child {
+  font-weight: 600;
+  color: var(--dark);
+}
+.spam-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* BUTTONS */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 10px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(255,148,79,.35);
+  transition: background .2s, transform .15s;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+.btn-primary:hover { background: var(--orange-h); transform: translateY(-1px); }
+.btn-primary:active { transform: none; }
+
+.btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--orange);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 10px;
+  border: 2px solid var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+.btn-outline:hover { background: var(--orange); color: var(--white); }
+
+/* SECTIONS */
+.section {
+  padding: 72px 24px;
+}
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.section-white { background: var(--white); }
+.section-light { background: var(--light); }
+.section-navy  { background: var(--navy); }
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  margin-bottom: 20px;
+}
+
+/* INVITE SECTION */
+.invite-section { background: var(--white); }
+.invite-section h2 { text-align: center; }
+.invite-note {
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* VSL */
+.vsl-wrap {
+  margin: 32px 0;
+  background: var(--dark);
+  border-radius: 14px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.vsl-placeholder {
+  text-align: center;
+  color: rgba(255,255,255,.3);
+  font-size: 13px;
+}
+.vsl-placeholder svg { display: block; margin: 0 auto 10px; opacity: .3; }
+
+/* START SECTION */
+.start-section { background: var(--light); }
+.start-section h2 { color: var(--navy); }
+.start-body {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+.start-body strong { color: var(--dark); }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 36px 24px;
+  text-align: center;
+  margin-top: auto;
+}
+.footer-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 24px;
+}
+.footer-contacts a {
+  color: var(--orange);
+  text-decoration: none;
+}
+.footer-contacts a:hover { text-decoration: underline; }
+.trust-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="check-badge">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1>Sua inscrição no <em>"Transação Tributária 360°"</em> foi confirmada!</h1>
+    <p class="hero-sub">Em instantes você vai receber no seu e-mail os dados de acesso à plataforma, com todas as aulas, materiais didáticos e o cronograma dos encontros ao vivo.</p>
+  </div>
+</section>
+
+<!-- CONFIRMATION CARD -->
+<div class="confirm-card-wrap">
+  <div class="confirm-card">
+    <h2>Detalhes do seu pedido:</h2>
+    <div class="order-detail">
+      <div class="order-row">
+        <span>Data da compra</span>
+        <span>[Data da compra]</span>
+      </div>
+      <div class="order-row">
+        <span>Número do pedido</span>
+        <span>[Número do pedido]</span>
+      </div>
+    </div>
+    <a href="#" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Acessar minhas aulas agora
+    </a>
+    <p class="spam-note">Se o e-mail não chegar em alguns minutos, verifique a caixa de spam ou entre em contato pelo suporte.</p>
+  </div>
+</div>
+
+<!-- INVITE -->
+<section class="section invite-section" style="padding-top: 80px;">
+  <div class="container">
+    <h2>Antes de começar, quero te fazer um convite.</h2>
+
+    <div class="vsl-wrap">
+      <div class="vsl-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+        Vídeo de apresentação
+      </div>
+    </div>
+
+    <a href="#" class="btn-primary">QUERO ENTRAR NA LISTA DE INTERESSADOS</a>
+
+    <p class="invite-note">Ao preencher, você entra em uma lista de leads qualificados. Quando a mentoria for lançada, você será avisado(a) antes da abertura pública, com condições especiais reservadas para essa lista.</p>
+  </div>
+</section>
+
+<!-- START COURSE -->
+<section class="section start-section">
+  <div class="container">
+    <h2>Enquanto isso, comece pelo treinamento.</h2>
+    <p class="start-body">As aulas já estão disponíveis na sua área de membros. Recomendo começar pelo <strong>Módulo 01</strong> e seguir a ordem sugerida, pois o curso foi estruturado para te levar dos fundamentos à execução prática de forma progressiva.</p>
+    <a href="#" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Acessar o curso agora
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">Dúvidas?</div>
+  <div class="footer-contacts">
+    <span>E-mail: <a href="mailto:suporte@XXX.com">suporte@XXX.com</a></span>
+    <span>WhatsApp: <a href="#">XX XXXX-XXXX</a></span>
+  </div>
+  <div class="trust-line">
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Compra 100% segura
+    </span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Suporte disponível
+    </span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Direitos reservados
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
