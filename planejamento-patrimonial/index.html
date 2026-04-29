@@ -440,7 +440,8 @@ footer span{color:var(--primary)}
 
 <script>
 var WEBHOOK = 'https://aplicativos-n8n.z6levt.easypanel.host/webhook/portoperottoni-patrimonial'
-var OBRIGADO = 'https://portoeperottoni.com.br/obrigado-patrimonial/'
+var SHEETY  = 'https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/leadsPortoPerottoni/p%C3%A1gina1'
+var OBRIGADO = 'https://portoeperottoni.com.br/obrigadopatrimonial/'
 
 function submitForm(btn) {
   var wrap = btn.closest('.form-card,.form-dark')
@@ -457,24 +458,24 @@ function submitForm(btn) {
   btn.textContent = 'Enviando...'
   btn.disabled = true
 
-  fetch(WEBHOOK, {
+  var webhookReq = fetch(WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      nome: nome,
-      email: email,
-      whatsapp: whatsapp,
+      nome: nome, email: email, whatsapp: whatsapp,
       origem: 'landing-planejamento-patrimonial',
       submittedAt: new Date().toISOString()
     })
-  })
-  .then(function() {
+  }).catch(function(){})
+
+  var sheetyReq = fetch(SHEETY, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ página1: { nome: nome, email: email, whatsapp: whatsapp } })
+  }).catch(function(){})
+
+  Promise.allSettled([webhookReq, sheetyReq]).then(function() {
     window.open(OBRIGADO, '_top')
-  })
-  .catch(function() {
-    btn.textContent = orig
-    btn.disabled = false
-    alert('Não foi possível enviar agora. Tente novamente em instantes.')
   })
 }
 </script>
