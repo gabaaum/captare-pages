@@ -90,13 +90,19 @@ body{font-family:'Poppins',sans-serif;background:var(--dark2);color:#fff;line-he
 .btn{display:inline-block;background:linear-gradient(90deg,var(--green1),var(--green2));color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:18px 44px;border-radius:6px;cursor:pointer;border:none;text-align:center;transition:transform .2s,box-shadow .2s;text-decoration:none}
 .btn:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(40,167,53,.4)}
 
-@media(max-width:700px){
+@media(max-width:768px){
   .passo-grid{grid-template-columns:1fr}
   .recado-grid{grid-template-columns:1fr;text-align:center}
   .recado-foto{width:180px;margin:0 auto}
   .recado-quote{text-align:left}
   section,.s-confirm,.s-light,.s-passos,.s-recado,.s-share,.s-dica,.s-cta{padding:48px 20px}
   .confirm-box{padding:28px 20px}
+}
+@media(max-width:480px){
+  .item-row{flex-direction:column;gap:12px}
+  .item-num{margin-top:0}
+  .btn{font-size:.85rem;padding:16px 24px;width:100%}
+  .hero h1{font-size:1.5rem}
 }
 </style>
 </head>
