@@ -475,7 +475,7 @@ function submitForm(btn) {
   }).catch(function(){})
 
   Promise.allSettled([webhookReq, sheetyReq]).then(function() {
-    window.open(OBRIGADO, '_top')
+    window.top.location.href = OBRIGADO
   })
 }
 </script>
