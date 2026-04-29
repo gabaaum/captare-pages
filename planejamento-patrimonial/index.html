@@ -439,7 +439,6 @@ footer span{color:var(--primary)}
 </footer>
 
 <script>
-var WEBHOOK = 'https://aplicativos-n8n.z6levt.easypanel.host/webhook/portoperottoni-patrimonial'
 var SHEETY  = 'https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/leadsPortoPerottoni/p%C3%A1gina1'
 var OBRIGADO = 'https://portoeperottoni.com.br/obrigadopatrimonial/'
 
@@ -458,23 +457,11 @@ function submitForm(btn) {
   btn.textContent = 'Enviando...'
   btn.disabled = true
 
-  var webhookReq = fetch(WEBHOOK, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      nome: nome, email: email, whatsapp: whatsapp,
-      origem: 'landing-planejamento-patrimonial',
-      submittedAt: new Date().toISOString()
-    })
-  }).catch(function(){})
-
-  var sheetyReq = fetch(SHEETY, {
+  fetch(SHEETY, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ página1: { nome: nome, email: email, whatsapp: whatsapp } })
-  }).catch(function(){})
-
-  Promise.allSettled([webhookReq, sheetyReq]).then(function() {
+  }).finally(function() {
     window.top.location.href = OBRIGADO
   })
 }
