@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sala Secreta | Dra. Sandra Scalco</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#1a0b2e;
+  --dark2:#240E35;
+  --purple:#59047c;
+  --green1:#217D2A;
+  --green2:#28A735;
+  --white:#ffffff;
+  --gray:#D6D6D6;
+}
+body{font-family:'Poppins',sans-serif;color:var(--white);background:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}
+section{padding:64px 20px}
+.container{max-width:680px;margin:0 auto}
+
+/* HERO */
+.hero{background:var(--dark2);padding:64px 20px 48px;text-align:center}
+.hero-tag{display:inline-block;background:rgba(89,4,124,.4);border:1px solid rgba(89,4,124,.8);color:var(--gray);font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:6px 18px;border-radius:100px;margin-bottom:24px}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;line-height:1.25;margin-bottom:20px}
+.hero p{font-size:.95rem;color:var(--gray);max-width:580px;margin:0 auto 12px}
+
+/* FORM SECTION */
+.form-section{background:var(--dark);padding:48px 20px}
+.form-box{background:rgba(255,255,255,.04);border:1px solid rgba(89,4,124,.5);border-radius:16px;padding:36px 32px;max-width:520px;margin:0 auto}
+.form-box h2{font-size:1rem;font-weight:700;margin-bottom:6px;color:#fff}
+.form-box .subtitle{font-size:.85rem;color:var(--gray);margin-bottom:20px}
+.alert{display:flex;align-items:center;gap:8px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.35);border-radius:8px;padding:10px 14px;font-size:.8rem;color:#fca5a5;margin-bottom:24px}
+.form-group{margin-bottom:14px}
+.form-group input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:12px 16px;font-family:'Poppins',sans-serif;font-size:.88rem;color:#fff;outline:none;transition:border-color .2s}
+.form-group input::placeholder{color:rgba(255,255,255,.35)}
+.form-group input:focus{border-color:rgba(89,4,124,.8)}
+.btn-submit{display:block;width:100%;background:linear-gradient(90deg,var(--green1),var(--green2));color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;padding:16px;border-radius:8px;cursor:pointer;border:none;margin-top:20px;transition:transform .2s,box-shadow .2s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(40,167,53,.4)}
+
+/* BENEFITS */
+.benefits{background:var(--dark2);padding:56px 20px}
+.section-title{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;margin-bottom:28px}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.check-list li{display:flex;gap:12px;align-items:flex-start;font-size:.93rem;color:var(--gray)}
+.check-list li::before{content:"✔";color:var(--green2);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* FOR WHO */
+.for-who{background:var(--dark);padding:56px 20px}
+.bullet-list{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.bullet-list li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;color:var(--gray)}
+.bullet-list li::before{content:"•";color:var(--purple);font-size:1.3rem;line-height:1;flex-shrink:0}
+
+/* AFTER */
+.after{background:var(--dark2);padding:56px 20px}
+.after-box{background:rgba(89,4,124,.12);border:1px solid rgba(89,4,124,.4);border-radius:12px;padding:24px 28px;margin-top:20px;font-size:.93rem;color:var(--gray);line-height:1.7}
+
+/* BOTTOM FORM */
+.bottom-form{background:var(--dark);padding:56px 20px;text-align:center}
+.bottom-form h2{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;margin-bottom:32px}
+.warning{display:flex;align-items:flex-start;gap:10px;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.3);border-radius:10px;padding:16px 20px;font-size:.83rem;color:#fca5a5;max-width:520px;margin:32px auto 0;text-align:left}
+
+@media(max-width:540px){
+  .form-box{padding:24px 18px}
+  section,.hero,.benefits,.for-who,.after,.bottom-form{padding:40px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-tag">Convite exclusivo</div>
+    <h1>Participe de uma sala secreta com a Dra. Sandra Scalco</h1>
+    <p>Todos os meses, a Dra. Sandra conduz encontros ao vivo com profissionais da saúde, focados em prática clínica em sexualidade, tomada de decisão e condução de casos reais.</p>
+    <p>Esses encontros fazem parte do GSA e são exclusivos para alunos.</p>
+    <p>Mas, de forma excepcional, abrimos poucas vagas para pessoas de fora participarem.</p>
+  </div>
+</div>
+
+<!-- FORM TOP -->
+<div class="form-section">
+  <div class="form-box">
+    <h2>Preencha o formulário abaixo para garantir a sua participação no próximo encontro.</h2>
+    <div style="height:12px"></div>
+    <div class="alert">⚠️ Vagas limitadas</div>
+    <form method="post" action="#">
+      <div class="form-group"><input type="text" name="nome" placeholder="Nome" required></div>
+      <div class="form-group"><input type="email" name="email" placeholder="E-mail" required></div>
+      <div class="form-group"><input type="tel" name="telefone" placeholder="Telefone"></div>
+      <div class="form-group"><input type="text" name="profissao" placeholder="Profissão" required></div>
+      <button type="submit" class="btn-submit">Garantir minha vaga</button>
+    </form>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<div class="benefits">
+  <div class="container">
+    <h2 class="section-title">É um ambiente onde você vai:</h2>
+    <ul class="check-list">
+      <li>acompanhar discussões reais de casos clínicos</li>
+      <li>entender como conduzir atendimentos com mais clareza</li>
+      <li>desenvolver raciocínio clínico aplicado</li>
+      <li>ver, na prática, como decisões são tomadas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOR WHO -->
+<div class="for-who">
+  <div class="container">
+    <h2 class="section-title">🎯 Para quem é essa sala</h2>
+    <p style="color:var(--gray);font-size:.93rem">Para profissionais da saúde que:</p>
+    <ul class="bullet-list">
+      <li>sentem insegurança ao abordar sexualidade</li>
+      <li>já estudaram, mas ainda travam na prática</li>
+      <li>querem entender como conduzir melhor seus atendimentos</li>
+    </ul>
+  </div>
+</div>
+
+<!-- AFTER -->
+<div class="after">
+  <div class="container">
+    <h2 class="section-title">🧠 O que acontece depois</h2>
+    <div class="after-box">
+      Após a participação na sala:<br><br>
+      Você poderá receber um convite para aprofundar sua formação dentro do GSA, o grupo completo de supervisão clínica da Dra. Sandra.
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM FORM -->
+<div class="bottom-form">
+  <div class="container">
+    <h2>Preencha abaixo para solicitar sua participação</h2>
+    <div class="form-box" style="text-align:left">
+      <form method="post" action="#">
+        <div class="form-group"><input type="text" name="nome" placeholder="Nome" required></div>
+        <div class="form-group"><input type="email" name="email" placeholder="E-mail" required></div>
+        <div class="form-group"><input type="tel" name="telefone" placeholder="Telefone"></div>
+        <div class="form-group"><input type="text" name="profissao" placeholder="Profissão" required></div>
+        <button type="submit" class="btn-submit">Garantir minha vaga</button>
+      </form>
+    </div>
+    <div class="warning">
+      ⚠️ As vagas são limitadas, por isso, caso seja selecionado(a), você receberá todas as informações por e-mail ou WhatsApp.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
