@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmação | Formação Avançada da Reforma Tributária</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0d1117;
+  --dark2:#111827;
+  --dark3:#1a2332;
+  --navy:#0f2044;
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --white:#ffffff;
+  --gray:#b0bac8;
+  --gray2:#d0d8e4;
+}
+body{font-family:'Poppins',sans-serif;color:var(--white);background:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}
+section{padding:72px 20px}
+.container{max-width:720px;margin:0 auto}
+.s-dark{background:var(--dark2)}
+.s-darker{background:var(--dark)}
+.s-navy{background:linear-gradient(180deg,var(--dark2) 0%,var(--navy) 100%)}
+.s-light{background:var(--dark3)}
+
+.btn{display:inline-block;background:linear-gradient(135deg,#b8922a 0%,#f0d060 45%,#e8c070 55%,#b8922a 100%);color:#111;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:18px 40px;border-radius:6px;cursor:pointer;border:none;text-align:center;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;width:100%;max-width:480px;margin:0 auto}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(201,168,76,.5)}
+.btn-outline{background:none;border:1.5px solid rgba(201,168,76,.5);color:var(--gold2);font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;padding:14px 40px;border-radius:6px;cursor:pointer;text-align:center;transition:border-color .2s,color .2s;display:block;width:100%;max-width:480px;margin:0 auto;text-decoration:none}
+.btn-outline:hover{border-color:var(--gold2);color:#fff}
+
+.divider{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;margin:0 auto 20px}
+.divider-left{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;margin:0 0 20px}
+
+.section-title{font-size:clamp(1.2rem,2.8vw,1.8rem);font-weight:700;line-height:1.3;margin-bottom:20px;color:#fff}
+.section-title em{color:var(--gold2);font-style:normal}
+.section-sub{font-size:.93rem;color:var(--gray);margin-bottom:20px;line-height:1.75}
+.section-sub strong{color:#fff}
+
+/* Confirmação */
+.confirmacao-topo{background:#05080f;padding:56px 20px 48px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+.check-icon{width:64px;height:64px;border-radius:50%;background:rgba(201,168,76,.12);border:2px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:1.8rem}
+.confirmacao-topo h1{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.4}
+.confirmacao-topo p{font-size:.9rem;color:var(--gray);max-width:480px;margin:0 auto 6px;line-height:1.75}
+.pedido-box{display:inline-flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 28px;margin-top:24px;text-align:left}
+.pedido-row{font-size:.82rem;color:var(--gray)}
+.pedido-row span{color:var(--gray2);font-weight:600}
+
+/* VSL */
+.vsl-wrap{width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:32px;color:var(--gray);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* Por que aparece */
+.razao-list{list-style:none;margin:20px 0 32px;padding:0}
+.razao-list li{position:relative;padding-left:26px;font-size:.93rem;color:var(--gray);margin-bottom:16px;line-height:1.7}
+.razao-list li::before{content:"→";color:var(--gold2);font-weight:900;position:absolute;left:0;top:2px}
+.razao-list li strong{color:#fff}
+
+.destaque-box{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:28px 32px;margin:0 0 32px}
+.destaque-box p{font-size:.95rem;color:var(--gray2);line-height:1.8}
+.destaque-box p strong{color:var(--gold2)}
+
+/* Modulos */
+.modulo-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.modulo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start}
+.modulo-num{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);border-radius:6px;font-size:.72rem;font-weight:800;color:var(--gold2);flex-shrink:0}
+.modulo-content h3{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:4px}
+.modulo-content p{font-size:.82rem;color:var(--gray);line-height:1.6}
+
+/* Bonus */
+.bonus-list{list-style:none;margin:0 0 32px;padding:0;display:flex;flex-direction:column;gap:12px}
+.bonus-item{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:10px}
+.bonus-icon{font-size:1.3rem;flex-shrink:0;line-height:1;margin-top:2px}
+.bonus-item p{font-size:.88rem;color:var(--gray);line-height:1.65}
+.bonus-item p strong{color:var(--gold2);display:block;margin-bottom:2px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* Preco */
+.preco-box{background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:36px 32px;text-align:center;margin-bottom:24px}
+.preco-de{color:var(--gray);font-size:.95rem;text-decoration:line-through;margin-bottom:4px}
+.preco-por{font-size:2.6rem;font-weight:900;color:var(--gold2);line-height:1}
+.preco-label{color:var(--gray);font-size:.85rem;margin:6px 0 4px}
+.preco-parcel{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:24px}
+.urgencia{font-size:.8rem;color:rgba(255,180,0,.8);background:rgba(255,180,0,.08);border:1px solid rgba(255,180,0,.2);border-radius:8px;padding:10px 16px;margin:20px 0 0;line-height:1.6}
+.selos{display:flex;justify-content:center;gap:20px;margin-top:16px;flex-wrap:wrap}
+.selo{font-size:.72rem;color:var(--gray);display:flex;align-items:center;gap:5px}
+.selo::before{content:"✓";color:var(--gold2);font-weight:900}
+
+/* Skip */
+.skip-section{background:var(--dark);padding:56px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+.skip-section p{font-size:.9rem;color:var(--gray);margin-bottom:20px;line-height:1.7}
+.skip-section p strong{color:#fff}
+
+/* Suporte */
+.suporte-grid{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
+.suporte-item{display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--gray)}
+.suporte-item span{font-size:1.1rem}
+
+/* Footer */
+footer{background:#05080f;padding:24px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+footer p{font-size:.75rem;color:rgba(176,186,200,.5);line-height:1.9}
+
+/* Marquee */
+.marquee-wrap{background:linear-gradient(90deg,#7a5c10,#b8922a,#7a5c10);padding:11px 0;overflow:hidden}
+.marquee{display:flex;white-space:nowrap;animation:marquee 25s linear infinite}
+.marquee span{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;padding-right:40px;opacity:.85}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+@media(max-width:540px){
+  section{padding:52px 16px}
+  .preco-box{padding:28px 20px}
+  .pedido-box{padding:14px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- CONFIRMACAO -->
+<div class="confirmacao-topo">
+  <div class="container">
+    <div class="check-icon">✓</div>
+    <h1>Sua inscrição na Formação Avançada da Reforma Tributária foi confirmada.</h1>
+    <p>O acesso já está liberado e os dados de entrada acabaram de ser enviados para o e-mail cadastrado.</p>
+    <div class="pedido-box">
+      <div class="pedido-row">Data da compra: <span>[Data da compra]</span></div>
+      <div class="pedido-row">Número do pedido: <span>[Número do pedido]</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>+ DOMINIO TECNICO &bull; + ESTRATEGIA &bull; + AUTORIDADE &bull; + APLICACAO REAL &bull; + DIFERENCIACAO &bull; + ANTECIPACAO &bull; + SEGURANCA NA DECISAO &bull; </span>
+    <span>+ DOMINIO TECNICO &bull; + ESTRATEGIA &bull; + AUTORIDADE &bull; + APLICACAO REAL &bull; + DIFERENCIACAO &bull; + ANTECIPACAO &bull; + SEGURANCA NA DECISAO &bull; </span>
+  </div>
+</div>
+
+<!-- UPSELL INTRO -->
+<section class="s-dark">
+  <div class="container" style="text-align:center">
+    <div class="divider"></div>
+    <h2 class="section-title">Antes de acessar o conteúdo, preciso te apresentar algo que só faz sentido <em>neste momento.</em></h2>
+    <p class="section-sub" style="text-align:center">Assista ao vídeo abaixo.</p>
+    <div class="vsl-wrap">[ VSL | Imersão na Advocacia Tributária ]</div>
+    <a href="#upsell-checkout" class="btn">QUERO A IMERSÃO COM A CONDIÇÃO ESPECIAL</a>
+  </div>
+</section>
+
+<!-- POR QUE APARECE -->
+<section class="s-darker">
+  <div class="container">
+    <div class="divider-left"></div>
+    <h2 class="section-title">Por que essa oferta aparece <em>agora?</em></h2>
+    <p class="section-sub">A Formação Avançada entrega o que prometeu: domínio técnico sobre a nova arquitetura tributária, leitura aprofundada da LC 214 e da LC 224, capacidade de interpretar a reforma em nível estratégico.</p>
+    <p class="section-sub">Para uma parte dos alunos, isso é exatamente o que faltava. Para outra parte, principalmente para os advogados que pretendem atuar diretamente na área, surge uma pergunta natural assim que a parte técnica se consolida: <strong>como transformar esse domínio em atuação concreta, em casos estruturados e em receita.</strong></p>
+    <div class="destaque-box">
+      <p>Saber interpretar a lei é uma competência.<br><br>Estruturar uma medida judicial, conduzir um procedimento fiscal, redigir uma impugnação consistente, escolher a tese certa para o caso certo é outra.<br><br>Ambas são necessárias para quem quer ocupar espaço de verdade no tributário, e o caminho entre uma e outra costuma ser o ponto em que muitos profissionais travam.</p>
+    </div>
+    <p class="section-sub">A Imersão na Advocacia Tributária existe para preencher essa segunda parte. É o treinamento prático que mostra, passo a passo, como atuar com teses tributárias e medidas judiciais para gerar resultado concreto para o cliente e receita para o profissional.</p>
+    <p class="section-sub"><strong>E, porque você acabou de entrar na Formação Avançada, tem acesso a uma condição que existe apenas nesta página.</strong></p>
+  </div>
+</section>
+
+<!-- MODULOS -->
+<section class="s-light">
+  <div class="container">
+    <div class="divider-left"></div>
+    <h2 class="section-title">O que está incluso <em>na Imersão.</em></h2>
+    <p class="section-sub">Aproximadamente <strong>[X] horas de conteúdo prático</strong>, organizadas em seis módulos que percorrem o caminho real de um caso tributário, da entrada do problema até a execução da medida adequada.</p>
+    <div class="modulo-grid">
+      <div class="modulo-card">
+        <div class="modulo-num">M1</div>
+        <div class="modulo-content">
+          <h3>Introdução à advocacia tributária</h3>
+          <p>Como o mercado funciona na prática e onde estão as oportunidades reais para quem está começando ou ampliando atuação na área.</p>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">M2</div>
+        <div class="modulo-content">
+          <h3>Procedimento fiscal</h3>
+          <p>Como a discussão tributária se inicia, quais movimentos cabem em cada etapa e que estratégias funcionam logo no começo do caso.</p>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">M3</div>
+        <div class="modulo-content">
+          <h3>Processo de consulta</h3>
+          <p>Quando o instrumento da consulta é a escolha certa, como estruturá-la com consistência técnica e o que evitar para não comprometer a tese.</p>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">M4</div>
+        <div class="modulo-content">
+          <h3>Impugnação ao lançamento</h3>
+          <p>Construção de defesa administrativa com estrutura prática, com foco no que efetivamente pesa na decisão da autoridade fiscal.</p>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">M5</div>
+        <div class="modulo-content">
+          <h3>Recurso voluntário</h3>
+          <p>Como recorrer com técnica e o que considerar na estratégia processual para sustentar a tese ao longo das instâncias.</p>
+        </div>
+      </div>
+      <div class="modulo-card">
+        <div class="modulo-num">M6</div>
+        <div class="modulo-content">
+          <h3>Medidas judiciais</h3>
+          <p>Mandado de segurança, ações tributárias e execução prática das principais medidas, com o passo a passo aplicado a casos reais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<section class="s-dark">
+  <div class="container">
+    <div class="divider-left"></div>
+    <h2 class="section-title">Materiais e <em>bônus exclusivos.</em></h2>
+    <ul class="bonus-list">
+      <li class="bonus-item">
+        <span class="bonus-icon">📋</span>
+        <p><strong>Resumo das aulas</strong>Material condensado para revisão rápida e consulta no dia a dia, organizado para funcionar como referência durante a montagem de um caso.</p>
+      </li>
+      <li class="bonus-item">
+        <span class="bonus-icon">📄</span>
+        <p><strong>Modelos de peças</strong>Conjunto de modelos prontos para aplicação imediata, construídos a partir de peças reais e ajustáveis para cada caso concreto.</p>
+      </li>
+      <li class="bonus-item">
+        <span class="bonus-icon">🎯</span>
+        <p><strong>Mentoria individual</strong>Possibilidade de encontros para discutir casos próprios e validar a estratégia antes de levá-la ao cliente. Diferencial raro em cursos da área.</p>
+      </li>
+      <li class="bonus-item">
+        <span class="bonus-icon">💬</span>
+        <p><strong>Acesso direto ao professor</strong>Canal aberto para tirar dúvidas técnicas durante o estudo e a aplicação do conteúdo.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRECO UPSELL -->
+<section class="s-navy" id="upsell-checkout">
+  <div class="container">
+    <div class="divider"></div>
+    <h2 class="section-title" style="text-align:center">Condição exclusiva para quem acabou de entrar na <em>Formação.</em></h2>
+    <br>
+    <div class="preco-box">
+      <div class="preco-de">De R$ [X]</div>
+      <div class="preco-por">R$ [X]</div>
+      <div class="preco-label">à vista</div>
+      <div class="preco-parcel">ou em até [X] vezes de R$ [X]</div>
+      <a href="#" class="btn">QUERO GARANTIR A IMERSÃO COM O DESCONTO</a>
+      <div class="urgencia">Esta condição está disponível apenas nesta página. Ao sair, o acesso ao valor promocional é encerrado e a Imersão volta a ser ofertada pelo valor cheio nos canais regulares.</div>
+      <div class="selos">
+        <span class="selo">Condição exclusiva para alunos da Formação Avançada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKIP -->
+<div class="skip-section">
+  <div class="container">
+    <p>Prefere seguir apenas com a Formação por enquanto?<br><strong>Sem problema. O conteúdo que você adquiriu está completo e liberado para consumo imediato.</strong></p>
+    <a href="#" class="btn-outline">ACESSAR A FORMAÇÃO AVANÇADA</a>
+    <p style="margin-top:16px;font-size:.82rem">Os dados de acesso também foram enviados para o e-mail cadastrado na compra.</p>
+  </div>
+</div>
+
+<!-- SUPORTE -->
+<section class="s-dark" style="padding:52px 20px">
+  <div class="container" style="text-align:center">
+    <div class="divider"></div>
+    <h2 class="section-title">Suporte e dúvidas.</h2>
+    <p class="section-sub">Para qualquer questão sobre acesso, conteúdo ou pagamento, a equipe está disponível.</p>
+    <div class="suporte-grid" style="align-items:center">
+      <div class="suporte-item" style="justify-content:center">
+        <span>✉</span> E-mail: <strong style="color:var(--gray2)">[e-mail de suporte]</strong>
+      </div>
+      <div class="suporte-item" style="justify-content:center">
+        <span>💬</span> WhatsApp: <strong style="color:var(--gray2)">[número de contato]</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Acesso por [X meses/ano] &nbsp;|&nbsp; Compra segura &nbsp;|&nbsp; Garantia de 7 dias &nbsp;|&nbsp; Direitos reservados a Éderson Porto</p>
+</footer>
+
+</body>
+</html>
