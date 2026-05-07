@@ -69,6 +69,8 @@ section{padding:64px 20px}
   .form-box{padding:24px 18px}
   section,.hero,.benefits,.for-who,.after,.bottom-form{padding:40px 16px}
 }
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.msg-erro{display:none;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.35);border-radius:8px;padding:10px 14px;font-size:.82rem;color:#fca5a5;margin-top:12px;text-align:center}
 </style>
 </head>
 <body>
@@ -80,7 +82,7 @@ section{padding:64px 20px}
     <div class="hero-name">Dra. Sandra Scalco</div>
     <div class="hero-crm">Médica | Especialista em Sexualidade Clínica</div>
     <div class="hero-tag">convite exclusivo</div>
-    <h1>Você recebeu um convite para participar de 1 encontro do GSA – Nova Era</h1>
+    <h1>Você recebeu um convite para participar de 1 encontro do GSA | Nova Era</h1>
     <p>Todos os meses, a Dra. Sandra conduz encontros ao vivo com profissionais da saúde, focados em prática clínica em sexualidade, tomada de decisão e condução de casos reais.</p>
     <p>Esses encontros fazem parte do GSA e são exclusivos para alunos(as).</p>
     <p>Mas, de forma excepcional, abrimos poucas vagas para pessoas de fora participarem.</p>
@@ -93,12 +95,13 @@ section{padding:64px 20px}
     <h2>Preencha o formulário abaixo para garantir a sua participação no próximo encontro.</h2>
     <div style="height:12px"></div>
     <div class="alert">⚠️ Vagas limitadas</div>
-    <form method="post" action="#">
-      <div class="form-group"><input type="text" name="nome" placeholder="Nome" required></div>
-      <div class="form-group"><input type="email" name="email" placeholder="E-mail" required></div>
-      <div class="form-group"><input type="tel" name="telefone" placeholder="Telefone"></div>
-      <div class="form-group"><input type="text" name="profissao" placeholder="Profissão" required></div>
-      <button type="submit" class="btn-submit">Garantir minha vaga</button>
+    <form id="gsa-form">
+      <div class="form-group"><input type="text" id="nome" placeholder="Nome" required></div>
+      <div class="form-group"><input type="email" id="email" placeholder="E-mail" required></div>
+      <div class="form-group"><input type="tel" id="telefone" placeholder="Telefone"></div>
+      <div class="form-group"><input type="text" id="profissao" placeholder="Profissão" required></div>
+      <button type="submit" class="btn-submit" id="btn-submit">Garantir minha vaga</button>
+      <div class="msg-erro" id="msg-erro">Ocorreu um erro. Tente novamente.</div>
     </form>
   </div>
 </div>
@@ -150,5 +153,46 @@ section{padding:64px 20px}
   </div>
 </div>
 
+<script>
+const SHEETY_URL = 'https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/gsa/página1';
+
+document.getElementById('gsa-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('btn-submit');
+  const msgErro = document.getElementById('msg-erro');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  msgErro.style.display = 'none';
+
+  const payload = {
+    página1: {
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: document.getElementById('telefone').value.trim(),
+      profissao: document.getElementById('profissao').value.trim()
+    }
+  };
+
+  try {
+    const res = await fetch(SHEETY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      window.location.href = '/captare-pages/gsa-obrigado/';
+    } else {
+      throw new Error('Erro ' + res.status);
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Garantir minha vaga';
+    msgErro.style.display = 'block';
+  }
+});
+</script>
 </body>
 </html>
