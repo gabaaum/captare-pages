@@ -11,17 +11,14 @@
 :root{
   --navy:#1a3178;
   --navy-d:#0f1e4a;
-  --navy-l:#2851c5;
   --gold:#c9963a;
-  --light:#f5f8ff;
-  --dark:#1a1a2e;
   --white:#ffffff;
 }
-
 body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var(--white);min-height:100vh;}
 
-/* HEADER */
+/* TOP BAR */
 .top-bar{
+  position:relative;z-index:10;
   background:rgba(255,255,255,.04);
   border-bottom:1px solid rgba(255,255,255,.08);
   display:flex;align-items:center;justify-content:center;
@@ -33,24 +30,53 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
 /* HERO */
 .hero{
   position:relative;
-  min-height:620px;
+  min-height:100vh;
+  background:var(--navy-d);
   overflow:hidden;
   display:flex;
   align-items:center;
 }
-.hero-inner{
-  position:relative;
-  z-index:2;
-  max-width:1100px;
-  width:100%;
-  margin:0 auto;
-  padding:72px 40px 72px;
-  display:grid;
-  grid-template-columns:1fr 440px;
-  gap:0 48px;
-  align-items:center;
+
+/* FOTO — metade direita full-bleed */
+.hero-photo{
+  position:absolute;
+  top:0; right:0;
+  width:55%;
+  height:100%;
+  z-index:1;
 }
-.hero-text{}
+.hero-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+/* Gradiente fundindo foto com fundo navy na borda esquerda */
+.hero-photo::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, var(--navy-d) 0%, rgba(15,30,74,.5) 30%, transparent 60%);
+  z-index:2;
+}
+/* Gradiente leve no rodape */
+.hero-photo::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:30%;
+  background:linear-gradient(to top, var(--navy-d) 0%, transparent 100%);
+  z-index:2;
+}
+
+/* COLUNA DE CONTEUDO */
+.hero-content{
+  position:relative;
+  z-index:3;
+  width:52%;
+  padding:80px 48px 80px 6vw;
+}
 .hero-tag{
   display:inline-block;
   background:rgba(201,150,58,.15);
@@ -62,86 +88,34 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
 }
 .hero h1{
   font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(1.5rem,2.4vw,2.2rem);
-  font-weight:800;line-height:1.25;
+  font-size:clamp(1.6rem,2.5vw,2.4rem);
+  font-weight:800;line-height:1.2;
   color:var(--white);
   margin-bottom:20px;
   letter-spacing:-0.3px;
 }
 .hero h1 em{font-style:normal;color:#7fa3ff;}
-.divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin:0 0 24px;}
+.divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin:0 0 20px;}
 .hero-sub{
   font-size:.95rem;color:rgba(255,255,255,.7);
-  line-height:1.8;
-}
-.hero-img-wrap{
-  position:absolute;
-  right:0;
-  bottom:0;
-  width:440px;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:1;
-}
-.hero-img-wrap img{
-  width:100%;
-  max-height:100%;
-  display:block;
-  object-fit:contain;
-  object-position:bottom center;
-}
-@media(max-width:860px){
-  .hero{min-height:auto;}
-  .hero-inner{
-    grid-template-columns:1fr;
-    padding:48px 24px 320px;
-    text-align:center;
-  }
-  .divider{margin:0 auto 24px;}
-  .hero-img-wrap{
-    width:280px;
-    height:320px;
-    left:50%;
-    transform:translateX(-50%);
-    right:auto;
-  }
-}
-@media(max-width:480px){
-  .hero-inner{padding-bottom:260px;}
-  .hero-img-wrap{width:220px;height:260px;}
+  line-height:1.8;margin-bottom:36px;
 }
 
-/* VSL BOX */
-.vsl-wrap{
-  max-width:800px;margin:0 auto;
-  padding:0 24px 64px;
-}
+/* VSL dentro do hero */
 .vsl-box{
   position:relative;width:100%;
-  background:rgba(0,0,0,.4);
+  background:rgba(0,0,0,.5);
   border:1px solid rgba(255,255,255,.1);
   border-radius:12px;
   overflow:hidden;
   aspect-ratio:16/9;
-  display:flex;align-items:center;justify-content:center;
 }
-.vsl-play{
-  width:72px;height:72px;border-radius:50%;
-  background:rgba(255,255,255,.15);
-  border:2px solid rgba(255,255,255,.3);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  transition:background .2s, transform .2s;
-}
-.vsl-play:hover{background:rgba(255,255,255,.25);transform:scale(1.08);}
-.vsl-play svg{width:28px;height:28px;fill:var(--white);margin-left:4px;}
+.vsl-box video{width:100%;height:100%;display:block;}
 
 /* CTA */
 .cta-section{
-  background:rgba(255,255,255,.04);
-  border-top:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  border-top:1px solid rgba(255,255,255,.07);
   padding:56px 24px 72px;
   text-align:center;
 }
@@ -154,29 +128,32 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
   letter-spacing:.04em;text-transform:uppercase;
   padding:22px 48px;border-radius:8px;
   text-decoration:none;
-  transition:transform .2s, box-shadow .2s;
+  transition:transform .2s,box-shadow .2s;
   box-shadow:0 4px 24px rgba(40,167,53,.3);
 }
 .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(40,167,53,.45);}
-.cta-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.04em;}
+.cta-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.35);}
 
-/* DECO */
-.deco{position:fixed;pointer-events:none;z-index:0;}
-.deco-tl{top:-120px;left:-120px;width:400px;height:400px;background:radial-gradient(circle,rgba(40,81,197,.2) 0%,transparent 70%);}
-.deco-br{bottom:-120px;right:-120px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,150,58,.12) 0%,transparent 70%);}
-
-.content{position:relative;z-index:1;}
-
-@media(max-width:600px){
-  .hero{padding:48px 20px 36px;}
-  .cta-btn{padding:18px 28px;font-size:.95rem;}
+/* MOBILE */
+@media(max-width:820px){
+  .hero{min-height:auto;flex-direction:column;}
+  .hero-photo{
+    position:relative;
+    width:100%;height:280px;
+    order:1;
+  }
+  .hero-photo::before{
+    background:linear-gradient(to bottom, var(--navy-d) 0%, transparent 40%);
+  }
+  .hero-content{
+    width:100%;
+    padding:40px 24px 48px;
+    order:2;
+  }
 }
 </style>
 </head>
 <body>
-<div class="deco deco-tl"></div>
-<div class="deco deco-br"></div>
-<div class="content">
 
   <div class="top-bar">
     <div class="top-bar-dot"></div>
@@ -184,33 +161,26 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
   </div>
 
   <section class="hero">
-    <div class="hero-img-wrap">
+    <div class="hero-photo">
       <img src="giovanna-hero.png" alt="Giovanna Paino">
     </div>
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-tag">Metodo SOS</div>
-        <h1>A estrategia que ja ajudou mais de <em>5.000 mulheres</em> a assumir o controle da propria alimentacao, emagrecer definitivamente e queimar gordura com comida de verdade, sem passar fome e sem viver de restricao.</h1>
-        <div class="divider"></div>
-        <p class="hero-sub">Neste breve video, a Giovanna Paino revela o metodo exato que ela usou para eliminar mais de 25kg apos a gravidez e como ajudou mais de 5.000 mulheres a alcançar o emagrecimento de forma duradoura e sem efeito rebote. Assista antes que saia do ar.</p>
+    <div class="hero-content">
+      <div class="hero-tag">Metodo SOS</div>
+      <h1>A estrategia que ja ajudou mais de <em>5.000 mulheres</em> a assumir o controle da propria alimentacao, emagrecer definitivamente e queimar gordura com comida de verdade, sem passar fome e sem viver de restricao.</h1>
+      <div class="divider"></div>
+      <p class="hero-sub">Neste breve video, a Giovanna Paino revela o metodo exato que ela usou para eliminar mais de 25kg apos a gravidez e como ajudou mais de 5.000 mulheres a alcançar o emagrecimento de forma duradoura e sem efeito rebote. Assista antes que saia do ar.</p>
+      <div class="vsl-box">
+        <video controls playsinline preload="metadata">
+          <source src="giovanna-vsl.mp4" type="video/mp4">
+        </video>
       </div>
-      <div></div>
     </div>
   </section>
-
-  <div class="vsl-wrap">
-    <div class="vsl-box">
-      <video controls playsinline preload="metadata" style="width:100%;height:100%;display:block;border-radius:12px;">
-        <source src="giovanna-vsl.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
 
   <section class="cta-section">
     <a href="#" class="cta-btn">Quero comecar minha transformacao com a Giovanna</a>
     <p class="cta-note">Acesso imediato apos a confirmacao</p>
   </section>
 
-</div>
 </body>
 </html>
