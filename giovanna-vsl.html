@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Giovanna Paino | Metodo SOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1a3178;
+  --navy-d:#0f1e4a;
+  --navy-l:#2851c5;
+  --gold:#c9963a;
+  --light:#f5f8ff;
+  --dark:#1a1a2e;
+  --white:#ffffff;
+}
+
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var(--white);min-height:100vh;}
+
+/* HEADER */
+.top-bar{
+  background:rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  padding:18px 24px;
+}
+.top-bar-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:10px;flex-shrink:0;}
+.top-bar-text{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+
+/* HERO */
+.hero{
+  max-width:760px;margin:0 auto;
+  padding:64px 24px 48px;
+  text-align:center;
+}
+.hero-tag{
+  display:inline-block;
+  background:rgba(201,150,58,.15);
+  border:1px solid rgba(201,150,58,.35);
+  color:var(--gold);
+  font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:5px 18px;border-radius:100px;
+  margin-bottom:28px;
+}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.75rem,4vw,2.9rem);
+  font-weight:800;line-height:1.2;
+  color:var(--white);
+  margin-bottom:24px;
+  letter-spacing:-0.3px;
+}
+.hero h1 em{font-style:normal;color:#7fa3ff;}
+.divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin:0 auto 28px;}
+.hero-sub{
+  font-size:1.05rem;color:rgba(255,255,255,.7);
+  line-height:1.8;max-width:620px;margin:0 auto;
+}
+
+/* VSL BOX */
+.vsl-wrap{
+  max-width:800px;margin:0 auto;
+  padding:0 24px 64px;
+}
+.vsl-box{
+  position:relative;width:100%;
+  background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+}
+.vsl-play{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(255,255,255,.15);
+  border:2px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s, transform .2s;
+}
+.vsl-play:hover{background:rgba(255,255,255,.25);transform:scale(1.08);}
+.vsl-play svg{width:28px;height:28px;fill:var(--white);margin-left:4px;}
+
+/* CTA */
+.cta-section{
+  background:rgba(255,255,255,.04);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:56px 24px 72px;
+  text-align:center;
+}
+.cta-btn{
+  display:inline-block;
+  background:linear-gradient(90deg,#217D2A,#28A735);
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  font-weight:700;font-size:1.05rem;
+  letter-spacing:.04em;text-transform:uppercase;
+  padding:22px 48px;border-radius:8px;
+  text-decoration:none;
+  transition:transform .2s, box-shadow .2s;
+  box-shadow:0 4px 24px rgba(40,167,53,.3);
+}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(40,167,53,.45);}
+.cta-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.04em;}
+
+/* DECO */
+.deco{position:fixed;pointer-events:none;z-index:0;}
+.deco-tl{top:-120px;left:-120px;width:400px;height:400px;background:radial-gradient(circle,rgba(40,81,197,.2) 0%,transparent 70%);}
+.deco-br{bottom:-120px;right:-120px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,150,58,.12) 0%,transparent 70%);}
+
+.content{position:relative;z-index:1;}
+
+@media(max-width:600px){
+  .hero{padding:48px 20px 36px;}
+  .cta-btn{padding:18px 28px;font-size:.95rem;}
+}
+</style>
+</head>
+<body>
+<div class="deco deco-tl"></div>
+<div class="deco deco-br"></div>
+<div class="content">
+
+  <div class="top-bar">
+    <div class="top-bar-dot"></div>
+    <div class="top-bar-text">Giovanna Paino</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-tag">Metodo SOS</div>
+    <h1>A estrategia que ja ajudou mais de <em>5.000 mulheres</em> a assumir o controle da propria alimentacao, emagrecer definitivamente e queimar gordura com comida de verdade, sem passar fome e sem viver de restricao.</h1>
+    <div class="divider"></div>
+    <p class="hero-sub">Neste breve video, a Giovanna Paino revela o metodo exato que ela usou para eliminar mais de 25kg apos a gravidez e como ajudou mais de 5.000 mulheres a alcançar o emagrecimento de forma duradoura e sem efeito rebote. Assista antes que saia do ar.</p>
+  </section>
+
+  <div class="vsl-wrap">
+    <div class="vsl-box">
+      <div class="vsl-play">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-section">
+    <a href="#" class="cta-btn">Quero comecar minha transformacao com a Giovanna</a>
+    <p class="cta-note">Acesso imediato apos a confirmacao</p>
+  </section>
+
+</div>
+</body>
+</html>
