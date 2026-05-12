@@ -218,6 +218,10 @@ footer span{color:var(--primary)}
             <input class="input" type="text"  name="nome"      placeholder="Seu nome completo" maxlength="100">
             <input class="input" type="email" name="email"     placeholder="Seu melhor e-mail">
             <input class="input" type="tel"   name="whatsapp"  placeholder="WhatsApp (00) 00000-0000">
+            <input type="hidden" name="utm_source"   id="utm_source">
+            <input type="hidden" name="utm_medium"   id="utm_medium">
+            <input type="hidden" name="utm_campaign" id="utm_campaign">
+            <input type="hidden" name="utm_content"  id="utm_content">
             <button class="btn btn-w" type="button" onclick="submitForm(this)">QUERO ACESSAR A AULA</button>
             <p class="form-note">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -426,6 +430,10 @@ footer span{color:var(--primary)}
           <input class="input-dark" type="text"  name="nome"     placeholder="Seu nome completo"       maxlength="100">
           <input class="input-dark" type="email" name="email"    placeholder="Seu melhor e-mail">
           <input class="input-dark" type="tel"   name="whatsapp" placeholder="WhatsApp (00) 00000-0000">
+          <input type="hidden" name="utm_source"   id="utm_source2">
+          <input type="hidden" name="utm_medium"   id="utm_medium2">
+          <input type="hidden" name="utm_campaign" id="utm_campaign2">
+          <input type="hidden" name="utm_content"  id="utm_content2">
           <button class="btn-white" type="button" onclick="submitForm(this)">QUERO PARTICIPAR!</button>
         </div>
       </div>
@@ -441,6 +449,13 @@ footer span{color:var(--primary)}
 <script>
 var SHEETY  = 'https://n8n.painel.alpsdigital.com.br/webhook-test/e6b92a99-29c6-4ce6-9b50-57e42b2b91f9'
 var OBRIGADO = 'https://portoeperottoni.com.br/obrigadopatrimonial/'
+
+;(function() {
+  var p = new URLSearchParams(window.location.search)
+  ;['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k) {
+    document.querySelectorAll('[name="'+k+'"]').forEach(function(el){ el.value = p.get(k) || '' })
+  })
+})()
 
 function submitForm(btn) {
   var wrap = btn.closest('.form-card,.form-dark')
@@ -460,7 +475,13 @@ function submitForm(btn) {
   fetch(SHEETY, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ página1: { nome: nome, email: email, whatsapp: whatsapp } })
+    body: JSON.stringify({
+      nome: nome, email: email, whatsapp: whatsapp,
+      utm_source:   wrap.querySelector('[name="utm_source"]').value,
+      utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
+      utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
+      utm_content:  wrap.querySelector('[name="utm_content"]').value
+    })
   }).finally(function() {
     window.top.location.href = OBRIGADO
   })
