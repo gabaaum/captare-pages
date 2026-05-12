@@ -447,7 +447,7 @@ footer span{color:var(--primary)}
 </footer>
 
 <script>
-var SHEETY  = 'https://n8n.painel.alpsdigital.com.br/webhook-test/e6b92a99-29c6-4ce6-9b50-57e42b2b91f9'
+var SHEETY  = 'https://n8n.painel.alpsdigital.com.br/webhook/e6b92a99-29c6-4ce6-9b50-57e42b2b91f9'
 var OBRIGADO = 'https://portoeperottoni.com.br/obrigadopatrimonial/'
 
 ;(function() {
@@ -468,23 +468,24 @@ function submitForm(btn) {
     return
   }
 
-  var orig = btn.textContent
   btn.textContent = 'Enviando...'
   btn.disabled = true
 
-  fetch(SHEETY, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      nome: nome, email: email, whatsapp: whatsapp,
-      utm_source:   wrap.querySelector('[name="utm_source"]').value,
-      utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
-      utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
-      utm_content:  wrap.querySelector('[name="utm_content"]').value
+  try {
+    fetch(SHEETY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: nome, email: email, whatsapp: whatsapp,
+        utm_source:   wrap.querySelector('[name="utm_source"]').value,
+        utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
+        utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
+        utm_content:  wrap.querySelector('[name="utm_content"]').value
+      })
     })
-  }).finally(function() {
-    window.top.location.href = OBRIGADO
-  })
+  } catch(e) {}
+
+  window.top.location.href = OBRIGADO
 }
 </script>
 </body>
