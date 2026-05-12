@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reforma Tributária na Prática | Webinário Gratuito | Porto &amp; Perottoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --bg:       #ffffff;
+  --surface:  #f8f8f8;
+  --hero-bg:  #f7f4f2;
+  --card:     #ffffff;
+  --primary:  #32b8bd;
+  --primary-h:#2ba1a5;
+  --primary-f:#ffffff;
+  --secondary:#2d2d2d;
+  --muted:    #606060;
+  --border:   #e5e5e5;
+  --shadow-card:0 1px 2px rgba(0,0,0,.04),0 8px 24px -12px rgba(0,0,0,.08);
+  --shadow-ele:0 10px 30px -12px rgba(50,184,189,.25);
+  --grad-primary:linear-gradient(135deg,#32b8bd 0%,#238f94 100%);
+}
+
+body{background:var(--bg);color:var(--secondary);font-family:'Inter',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.serif{font-family:'Playfair Display',serif}
+.container{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+.container-tight{width:100%;max-width:840px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;background:var(--hero-bg);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--secondary);text-decoration:none}
+.nav-logo span{color:var(--primary)}
+.nav-btn{display:none}
+@media(min-width:640px){.nav-btn{display:inline-flex}}
+
+/* BTN */
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--primary);color:var(--primary-f);font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--primary-h);transform:translateY(-1px)}
+.btn-lg{font-size:15px;padding:17px 44px}
+.btn-w{width:100%;display:flex}
+
+/* PILL */
+.pill{display:inline-flex;align-items:center;background:var(--primary);color:var(--primary-f);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px}
+
+/* HERO */
+.hero{margin-top:-64px;background:var(--hero-bg)}
+.hero-grid{display:grid;min-height:100vh}
+@media(min-width:1024px){.hero-grid{grid-template-columns:1fr 1fr;padding-top:64px}}
+
+.hero-mobile-img{position:relative;padding-top:64px}
+@media(min-width:1024px){.hero-mobile-img{display:none}}
+.hero-mobile-img img{height:55vw;max-height:400px;width:100%;object-fit:cover;display:block}
+.hero-mobile-fade{position:absolute;bottom:0;left:0;right:0;height:96px;background:linear-gradient(to bottom,transparent,var(--hero-bg));pointer-events:none}
+
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:48px 24px}
+@media(min-width:640px){.hero-content{padding:48px 40px}}
+@media(min-width:1024px){.hero-content{padding:64px 64px}}
+@media(min-width:1280px){.hero-content{padding:64px 96px}}
+.hero-inner{width:100%;max-width:576px;margin:0 auto}
+
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.1;color:var(--secondary);margin-top:20px}
+.hero-h1 span{color:var(--primary)}
+.hero-sub{font-size:17px;font-weight:600;color:var(--secondary);margin-top:24px;line-height:1.5}
+.hero-desc{font-size:15px;color:var(--muted);margin-top:12px;line-height:1.7}
+
+.hero-desktop-img{display:none;position:relative}
+@media(min-width:1024px){.hero-desktop-img{display:block}}
+.hero-desktop-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-desktop-fade{position:absolute;top:0;bottom:0;left:0;width:160px;background:linear-gradient(to right,var(--hero-bg),transparent);pointer-events:none;z-index:1}
+
+/* FORM */
+.form-wrap{margin-top:32px}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:12px}
+.input{width:100%;height:44px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0 12px;color:var(--secondary);font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.input::placeholder{color:var(--muted)}
+.input:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(50,184,189,.15)}
+.form-note{display:flex;align-items:center;justify-content:center;gap:5px;font-size:12px;color:var(--muted)}
+
+/* BANNER */
+.banner{position:relative;height:280px;overflow:hidden}
+@media(min-width:768px){.banner{height:380px}}
+.banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(4px);transform:scale(1.1)}
+.banner-overlay{position:absolute;inset:0;background:rgba(45,45,45,.55)}
+.banner-content{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.banner-pill{display:inline-flex;align-items:center;border:1px solid rgba(50,184,189,.6);background:rgba(45,45,45,.4);backdrop-filter:blur(8px);padding:6px 20px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary)}
+.banner-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:700;line-height:1.2;color:#fff;margin-top:20px}
+.banner-h2 span{color:var(--primary)}
+
+/* SECTIONS */
+.s-bg{background:var(--bg);padding:80px 0}
+.s-alt{background:var(--surface);padding:80px 0}
+.s-grad{background:var(--grad-primary);padding:80px 0}
+@media(min-width:768px){.s-bg,.s-alt,.s-grad{padding:112px 0}}
+
+.s-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--primary)}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);font-weight:700;line-height:1.2;color:var(--secondary);margin-top:12px}
+.s-sub{font-size:17px;color:var(--muted);margin-top:16px}
+
+/* MANCHETES */
+.news-grid{display:grid;gap:16px;grid-template-columns:1fr;margin-top:48px}
+@media(min-width:640px){.news-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.news-grid{grid-template-columns:repeat(3,1fr)}}
+.news-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-card);padding:24px 20px;display:flex;flex-direction:column;gap:10px;min-height:140px}
+.news-source{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary)}
+.news-headline{font-size:14px;font-weight:600;color:var(--secondary);line-height:1.5}
+
+/* PROSE */
+.prose{display:flex;flex-direction:column;gap:20px}
+.prose p{font-size:17px;color:var(--muted);line-height:1.85}
+.prose p strong,.prose p b{color:var(--secondary);font-weight:600}
+
+/* CONQUISTAS */
+.num-grid{display:grid;gap:16px;margin:40px 0}
+@media(min-width:640px){.num-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.num-grid{grid-template-columns:repeat(4,1fr)}}
+.num-card{border-left:4px solid var(--primary);background:var(--surface);border-radius:0 12px 12px 0;padding:24px 20px}
+.num-n{font-family:'Playfair Display',serif;font-size:32px;color:var(--primary);line-height:1}
+.num-card p{margin-top:12px;font-weight:600;font-size:15px;line-height:1.45;color:var(--secondary)}
+
+/* PARA QUEM É */
+.for-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:48px}
+.for-item{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow-card)}
+.for-check{flex-shrink:0;margin-top:2px;width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.for-item p{font-size:15px;color:var(--secondary);line-height:1.65}
+
+/* EQUIPE */
+.equipe-grid{display:grid;gap:48px;align-items:center}
+@media(min-width:768px){.equipe-grid{grid-template-columns:1fr 1fr}}
+.equipe-photo{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-ele);order:2}
+@media(min-width:768px){.equipe-photo{order:1}}
+.equipe-photo img{width:100%;height:100%;object-fit:cover}
+.equipe-text{order:1}
+@media(min-width:768px){.equipe-text{order:2}}
+
+/* FINAL CTA */
+.cta-grid{display:grid;gap:48px;align-items:start}
+@media(min-width:768px){.cta-grid{grid-template-columns:1fr 1fr}}
+.cta-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);font-weight:700;line-height:1.2;color:#fff}
+.cta-p{font-size:17px;color:rgba(255,255,255,.85);margin-top:20px;line-height:1.7}
+.cta-note{font-size:14px;font-weight:600;color:rgba(255,255,255,.9);margin-top:16px}
+.form-dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:16px;padding:28px 24px}
+.input-dark{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:12px 14px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;margin-bottom:12px}
+.input-dark::placeholder{color:rgba(255,255,255,.45)}
+.input-dark:focus{border-color:rgba(255,255,255,.7)}
+.btn-white{width:100%;background:#fff;color:var(--secondary);font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:15px 24px;border:none;border-radius:8px;cursor:pointer;transition:background .2s,transform .15s;margin-top:4px}
+.btn-white:hover{background:#f0f0f0;transform:translateY(-1px)}
+.cta-form-note{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:12px;font-size:12px;color:rgba(255,255,255,.5)}
+
+footer{background:var(--secondary);color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:13px}
+footer span{color:var(--primary)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Porto <span>&amp;</span> Perottoni</a>
+    <a href="#cta" class="btn nav-btn">Garantir minha vaga</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+
+    <div class="hero-mobile-img">
+      <img src="https://reform-guide.lovable.app/assets/socios-porto-perottoni-DX9LHp_9.png"
+           alt="Sócios Porto &amp; Perottoni" loading="eager">
+      <div class="hero-mobile-fade"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-inner">
+        <span class="pill">Webinário Online e Gratuito</span>
+
+        <h1 class="hero-h1">
+          Reforma Tributária na Prática: <span>o que muda, quanto custa e como se preparar</span>
+        </h1>
+
+        <p class="hero-desc">
+          A Reforma Tributária já começou a mudar as regras. Você sabe exatamente como isso afeta os seus clientes? Descubra o que muda, quanto custa e quais decisões precisam ser tomadas agora, antes que a transição pegue o seu escritório no contrapé.
+        </p>
+
+        <div class="form-wrap">
+          <div class="form-card" id="hero-form">
+            <input class="input" type="text"  name="nome"      placeholder="Seu nome completo" maxlength="100">
+            <input class="input" type="email" name="email"     placeholder="Seu melhor e-mail">
+            <input class="input" type="tel"   name="whatsapp"  placeholder="WhatsApp (00) 00000-0000">
+            <input type="hidden" name="utm_source">
+            <input type="hidden" name="utm_medium">
+            <input type="hidden" name="utm_campaign">
+            <input type="hidden" name="utm_content">
+            <button class="btn btn-w" type="button" onclick="submitForm(this)">QUERO ACESSAR O WEBINÁRIO</button>
+            <p class="form-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Acesso com vagas limitadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-desktop-img">
+      <img src="https://reform-guide.lovable.app/assets/socios-porto-perottoni-DX9LHp_9.png"
+           alt="Sócios Porto &amp; Perottoni" loading="eager">
+      <div class="hero-desktop-fade"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner">
+  <img class="banner-img"
+       src="https://reform-guide.lovable.app/assets/equipe-porto-perottoni-BafcCDPg.png"
+       alt="Equipe Porto &amp; Perottoni">
+  <div class="banner-overlay"></div>
+  <div class="banner-content">
+    <div>
+      <span class="banner-pill">Business Intelligence Jurídico</span>
+      <h2 class="banner-h2">Excelência em Direito Tributário e <span>Consultoria Estratégica</span></h2>
+    </div>
+  </div>
+</div>
+
+<!-- MANCHETES -->
+<section class="s-alt">
+  <div class="container">
+    <p class="s-eyebrow">Autoridade na mídia</p>
+    <h2 class="s-title">O que a mídia está alertando</h2>
+
+    <div class="news-grid">
+      <div class="news-card">
+        <span class="news-source">Agência Brasil</span>
+        <p class="news-headline">Reforma tributária pode elevar IVA para 28,55%, estima relator</p>
+      </div>
+      <div class="news-card">
+        <span class="news-source">Senado Federal</span>
+        <p class="news-headline">Reforma tributária: comércio e serviços apontam perda de competitividade e alta de preços</p>
+      </div>
+      <div class="news-card">
+        <span class="news-source">Agência Brasil</span>
+        <p class="news-headline">Reforma tributária entra em fase de testes em 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="s-bg">
+  <div class="container-tight">
+
+    <div class="prose">
+      <p>Você já deve ter visto manchetes como essas. E provavelmente sentiu aquele desconforto de quem sabe que algo grande está acontecendo, mas ainda não consegue medir exatamente o tamanho do impacto.</p>
+      <p>Quais operações ficam mais caras? Quais clientes precisam de atenção imediata? Quais decisões precisam ser tomadas agora e quais podem esperar?</p>
+    </div>
+
+    <div class="num-grid" style="grid-template-columns:1fr;">
+      <div class="num-card" style="border-left-color:var(--primary)">
+        <p>A Reforma Tributária é o maior redesenho fiscal que o Brasil já viveu. Novos tributos, novas regras de crédito, uma lógica completamente diferente de apuração - e tudo isso com um cronograma de transição que já está em andamento.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>O problema é que a maioria dos profissionais contábeis está tentando acompanhar essa mudança do mesmo jeito de sempre: lendo legislação, assistindo lives genéricas, torcendo para que alguém traduza o que realmente muda na operação dos clientes.</p>
+      <p>Só que dessa vez, <b>ler a lei não basta</b>. Porque o desafio não está em entender o texto: está em saber o que fazer com ele.</p>
+      <p>E o mais importante: como apresentar tudo isso de forma clara para quem depende da sua orientação?</p>
+      <p><b>Essa insegurança paralisa</b> - e, enquanto você espera clareza, o mercado já está se movimentando.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- O WEBINÁRIO -->
+<section class="s-alt">
+  <div class="container-tight">
+
+    <h2 class="s-title">
+      Foi para resolver exatamente esse cenário que preparamos o webinário
+      <em style="font-style:italic;color:var(--primary)">"Reforma Tributária na Prática"</em>
+    </h2>
+
+    <div class="prose" style="margin-top:32px">
+      <p>Em 30 minutos, você vai ter acesso a um raciocínio estruturado sobre como a reforma impacta operações reais de empresas, com números, comparativos e uma lógica que você pode aplicar já no dia seguinte.</p>
+      <p>Sem teorias soltas ou repetições do que já foi publicado. O que vamos apresentar é um método prático para mapear impactos, identificar riscos e construir um plano de ação para os seus clientes, independentemente do regime tributário em que se enquadram.</p>
+      <p>Você vai sair deste conteúdo sabendo por onde começar, o que priorizar e como transformar esse conhecimento em orientação de alto valor: o tipo de orientação que diferencia o profissional que acompanha a mudança daquele que conduz a transição.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-top:48px;margin-bottom:24px;color:var(--secondary)">O que você vai conquistar</h3>
+
+    <div class="num-grid">
+      <div class="num-card">
+        <div class="num-n">01</div>
+        <p>Raciocínio estruturado: entenda o impacto em operações reais em 30 minutos.</p>
+      </div>
+      <div class="num-card">
+        <div class="num-n">02</div>
+        <p>Comparativos numéricos: saia da teoria e vá direto para os números.</p>
+      </div>
+      <div class="num-card">
+        <div class="num-n">03</div>
+        <p>Como mapear riscos e construir planos de ação claros para seus clientes.</p>
+      </div>
+      <div class="num-card">
+        <div class="num-n">04</div>
+        <p>Transforme-se no profissional que conduz a transição, não que corre atrás dela.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <a href="#cta" class="btn btn-lg">GARANTIR MINHA VAGA</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="s-bg">
+  <div class="container-tight">
+
+    <h2 class="s-title">Este webinário foi pensado para:</h2>
+
+    <ul class="for-list">
+      <li class="for-item">
+        <div class="for-check">→</div>
+        <p>Contadores e profissionais contábeis que atendem empresas de diferentes regimes (Simples, Presumido e Real) e precisam entender os impactos específicos da Reforma em cada um deles.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-check">→</div>
+        <p>Gestores de escritórios contábeis que querem posicionar sua equipe à frente da transição, e não atrás dela.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-check">→</div>
+        <p>Consultores tributários que buscam um método claro para apresentar diagnósticos e planos de ação com segurança e credibilidade.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-check">→</div>
+        <p>Profissionais que já leram sobre a Reforma, mas ainda sentem que falta um caminho prático para aplicar o que sabem na rotina dos seus clientes.</p>
+      </li>
+      <li class="for-item">
+        <div class="for-check">→</div>
+        <p>Quem entende que dominar a Reforma Tributária agora é uma vantagem competitiva, e que esperar pode custar relevância e contratos.</p>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- QUEM É A PORTO & PEROTTONI -->
+<section class="s-alt">
+  <div class="container">
+    <div class="equipe-grid">
+
+      <div class="equipe-photo">
+        <img src="https://reform-guide.lovable.app/assets/equipe-porto-perottoni-BafcCDPg.png"
+             alt="Equipe Porto &amp; Perottoni" loading="lazy">
+      </div>
+
+      <div class="equipe-text">
+        <h2 class="s-title">QUEM É A PORTO &amp; PEROTTONI</h2>
+
+        <div class="prose" style="margin-top:24px">
+          <p>A Porto &amp; Perottoni é um escritório que integra advocacia e contabilidade tributária com um único objetivo: oferecer orientação estratégica de alto nível para questões fiscais e patrimoniais.</p>
+          <p>Com anos de experiência em planejamento tributário, a equipe já conduziu inúmeros diagnósticos, atendeu empresas e construiu uma reputação sólida no mercado, baseada em <b>resultados concretos, rigor técnico e clareza na comunicação</b>.</p>
+          <p>Os profissionais que passam pela orientação da Porto &amp; Perottoni costumam dizer a mesma coisa: encontraram segurança técnica, didática para entender cenários complexos e, acima de tudo, direcionamento prático, sem promessas vazias.</p>
+          <p>Este webinário é uma extensão direta desse trabalho. O mesmo nível de profundidade e aplicação que entregamos em consultoria, agora em um formato acessível para quem precisa se preparar para a maior mudança tributária da história recente do país.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="s-grad" id="cta">
+  <div class="container">
+    <div class="cta-grid">
+
+      <div>
+        <h2 class="cta-h2">A Reforma Tributária não vai esperar ninguém ficar pronto.</h2>
+        <p class="cta-p">As regras já estão mudando e os seus clientes vão precisar de respostas claras, embasadas e com direcionamento prático.</p>
+        <p class="cta-note">Este conteúdo é gratuito, mas as vagas são limitadas.</p>
+      </div>
+
+      <div>
+        <div class="form-dark">
+          <input class="input-dark" type="text"  name="nome"     placeholder="Seu nome completo"       maxlength="100">
+          <input class="input-dark" type="email" name="email"    placeholder="Seu melhor e-mail">
+          <input class="input-dark" type="tel"   name="whatsapp" placeholder="WhatsApp (00) 00000-0000">
+          <input type="hidden" name="utm_source">
+          <input type="hidden" name="utm_medium">
+          <input type="hidden" name="utm_campaign">
+          <input type="hidden" name="utm_content">
+          <button class="btn-white" type="button" onclick="submitForm(this)">QUERO PARTICIPAR!</button>
+          <p class="cta-form-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Acesso seguro. Sem spam.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 <span>Porto &amp; Perottoni</span>. Todos os direitos reservados.
+</footer>
+
+<script>
+var WEBHOOK = 'https://n8n.painel.alpsdigital.com.br/webhook-test/e6b92a99-29c6-4ce6-9b50-57e42b2b91f9'
+var OBRIGADO = 'https://portoeperottoni.com.br/obrigado/'
+
+;(function() {
+  var p = new URLSearchParams(window.location.search)
+  ;['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k) {
+    document.querySelectorAll('[name="'+k+'"]').forEach(function(el){ el.value = p.get(k) || '' })
+  })
+})()
+
+function submitForm(btn) {
+  var wrap = btn.closest('.form-card,.form-dark')
+  var nome     = wrap.querySelector('[name="nome"]').value.trim()
+  var email    = wrap.querySelector('[name="email"]').value.trim()
+  var whatsapp = wrap.querySelector('[name="whatsapp"]').value.trim()
+
+  if (!nome || !email || !whatsapp) {
+    alert('Por favor, preencha todos os campos.')
+    return
+  }
+
+  btn.textContent = 'Enviando...'
+  btn.disabled = true
+
+  try {
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: nome, email: email, whatsapp: whatsapp,
+        utm_source:   wrap.querySelector('[name="utm_source"]').value,
+        utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
+        utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
+        utm_content:  wrap.querySelector('[name="utm_content"]').value
+      })
+    })
+  } catch(e) {}
+
+  window.top.location.href = OBRIGADO
+}
+</script>
+</body>
+</html>
