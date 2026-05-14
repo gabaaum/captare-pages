@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compra Confirmada | Aula Transação Tributária Federal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0b1541;
+  --navy-d:  #080f30;
+  --orange:  #ff944f;
+  --orange-h:#e87c38;
+  --light:   #f0f1f0;
+  --dark:    #222023;
+  --muted:   #5a5a6a;
+  --border:  #dcdce0;
+  --white:   #ffffff;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  padding: 64px 24px 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, #172561 0%, var(--navy) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.check-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,148,79,.15);
+  border: 2px solid rgba(255,148,79,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  color: var(--orange);
+}
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 4.5vw, 44px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 20px;
+}
+h1 em { font-style: normal; color: var(--orange); }
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255,255,255,.75);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* SECTIONS */
+.section { padding: 72px 24px; }
+.container { max-width: 680px; margin: 0 auto; }
+.section-white { background: var(--white); }
+.section-light { background: var(--light); }
+.section-navy  { background: var(--navy); }
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  margin-bottom: 20px;
+}
+p { margin-bottom: 16px; }
+p:last-child { margin-bottom: 0; }
+
+/* BUTTONS */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  border-radius: 10px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(255,148,79,.35);
+  transition: background .2s, transform .15s;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+.btn-primary:hover { background: var(--orange-h); transform: translateY(-1px); }
+.btn-primary:active { transform: none; }
+
+.btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--orange);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 10px;
+  border: 2px solid var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+.btn-outline:hover { background: var(--orange); color: var(--white); }
+
+/* VSL */
+.vsl-wrap {
+  margin: 32px 0;
+  background: var(--dark);
+  border-radius: 14px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.vsl-placeholder {
+  text-align: center;
+  color: rgba(255,255,255,.3);
+  font-size: 13px;
+}
+.vsl-placeholder svg { display: block; margin: 0 auto 10px; opacity: .3; }
+
+/* UPSELL INTRO */
+.upsell-intro {
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.75;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* WHY SECTION */
+.why-section h2 { color: var(--navy); }
+.why-body {
+  font-size: 16px;
+  color: var(--dark);
+  line-height: 1.8;
+}
+.why-body p { margin-bottom: 18px; }
+.why-body p:last-child { margin-bottom: 0; }
+.highlight-line {
+  border-left: 3px solid var(--orange);
+  padding-left: 20px;
+  margin: 24px 0;
+  font-size: 17px;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+/* MODULES */
+.modules-section h2 { color: var(--navy); }
+.modules-intro {
+  font-size: 16px;
+  color: var(--dark);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+.module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.module-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.module-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--navy);
+  color: var(--orange);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+.module-text { font-size: 14px; line-height: 1.65; color: var(--dark); }
+.module-text strong { color: var(--navy); display: block; margin-bottom: 2px; font-size: 14px; }
+
+/* EXTRAS */
+.extras-section h2 { color: var(--navy); }
+.arrow-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+.arrow-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 16px;
+  color: var(--dark);
+  line-height: 1.65;
+}
+.arrow-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  background: var(--orange);
+  border-radius: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+}
+
+/* PRICE */
+.price-section { background: var(--navy); text-align: center; }
+.price-section h2 { color: var(--white); }
+.price-box {
+  max-width: 480px;
+  margin: 32px auto 0;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,148,79,.3);
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+.exclusive-badge {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+.price-from {
+  font-size: 15px;
+  color: rgba(255,255,255,.4);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+.price-installments {
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 6px;
+}
+.price-main {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(36px, 8vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.price-or {
+  color: rgba(255,255,255,.4);
+  font-size: 13px;
+  margin: 10px 0;
+}
+.price-cash {
+  font-size: clamp(17px, 4vw, 20px);
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+.trust-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  margin-top: 20px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* URGENCY */
+.urgency-section { background: var(--white); text-align: center; }
+.urgency-note {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* SKIP SECTION */
+.skip-section { background: var(--light); }
+.skip-section h2 { color: var(--navy); }
+.skip-body {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+.skip-body strong { color: var(--dark); }
+.access-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.email-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 36px 24px;
+  text-align: center;
+  margin-top: auto;
+}
+.footer-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 24px;
+}
+.footer-contacts a { color: var(--orange); text-decoration: none; }
+.footer-contacts a:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .section { padding: 52px 20px; }
+  .price-box { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="check-badge">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1>Sua compra foi <em>confirmada!</em></h1>
+    <p class="hero-sub">Você acabou de garantir o acesso à aula "Transação Tributária na Prática: Fundamentos e Oportunidades". Em breve, você vai receber no seu e-mail todos os dados para acessar o conteúdo.</p>
+  </div>
+</section>
+
+<!-- UPSELL INTRO + VSL -->
+<section class="section section-white">
+  <div class="container">
+    <p class="upsell-intro">Antes de acessar sua aula, preciso te mostrar algo. São apenas X minutos, e pode mudar completamente o nível da sua atuação com transação tributária.</p>
+
+    <div class="vsl-wrap">
+      <div class="vsl-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        VSL do Upsell | "Transação Tributária 360°: Estratégia, Técnica e Execução"
+      </div>
+    </div>
+
+    <a href="https://pay.kiwify.com.br/y6koxFU" target="_blank" class="btn-primary">QUERO CONHECER O CURSO COMPLETO COM CONDIÇÃO ESPECIAL</a>
+  </div>
+</section>
+
+<!-- WHY THIS OFFER -->
+<section class="section section-light why-section">
+  <div class="container">
+    <h2>Por que essa condição agora?</h2>
+
+    <div class="why-body">
+      <p>A aula que você acabou de adquirir te dá os fundamentos e as oportunidades da transação tributária federal. Você vai entender como o instituto funciona, quando ele é aplicável e por que ele é tão rentável. É um ponto de partida sólido.</p>
+      <p>Mas existe uma diferença entre entender os fundamentos e ter o domínio técnico completo para atuar com segurança em qualquer cenário, desde uma transação por adesão até operações envolvendo grupos econômicos, negócios jurídicos processuais e a judicialização do instituto.</p>
+      <div class="highlight-line">A aula te dá a visão geral. O curso completo te dá o método inteiro.</div>
+      <p>E como você já está aqui, já tomou a decisão de investir no seu aperfeiçoamento, existe uma condição especial que só aparece nesta página, só agora, exclusivamente para quem adquiriu a aula introdutória.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="section section-white modules-section">
+  <div class="container">
+    <h2>O que você recebe no "Transação Tributária 360°":</h2>
+
+    <p class="modules-intro">São mais de 6 horas de conteúdo distribuídas em 11 módulos, cobrindo a transação tributária federal da teoria até a execução prática. Tudo conduzido pela Dra. Jussandra Hickmann, que já reduziu mais de R$ 950 milhões em passivos tributários.</p>
+
+    <div class="module-list">
+      <div class="module-item">
+        <div class="module-num">01</div>
+        <div class="module-text">
+          <strong>Aspectos Introdutórios</strong>
+          A base conceitual e legislativa da transação tributária federal, para que você entenda a origem e a lógica por trás do instituto.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">02</div>
+        <div class="module-text">
+          <strong>Benefícios da Transação</strong>
+          Os descontos, prazos e condições que tornam a transação uma das ferramentas mais vantajosas do direito tributário atual.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">03</div>
+        <div class="module-text">
+          <strong>Créditos Passíveis e Modalidades</strong>
+          Quais créditos podem ser transacionados e qual modalidade se encaixa em cada perfil de cliente.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">04</div>
+        <div class="module-text">
+          <strong>A Capacidade de Pagamento (CAPAG)</strong>
+          Como o Fisco calcula se a empresa pode pagar sem desconto, e como questionar essa classificação para obter condições melhores.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">05</div>
+        <div class="module-text">
+          <strong>Transação de Grupos Econômicos</strong>
+          As particularidades e estratégias para operar transações envolvendo estruturas empresariais complexas.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">06</div>
+        <div class="module-text">
+          <strong>Obrigações Assumidas e Penalidades</strong>
+          O que o contribuinte precisa cumprir após a celebração do acordo e os riscos de descumprimento.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">07</div>
+        <div class="module-text">
+          <strong>Negócio Jurídico Processual em Matéria Tributária</strong>
+          Como utilizar o NJP para destravar acordos complexos que não se resolvem pelas vias convencionais.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">08</div>
+        <div class="module-text">
+          <strong>PRDI e Transações do FGTS</strong>
+          As especificidades dessas modalidades e como aproveitá-las na prática.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">09</div>
+        <div class="module-text">
+          <strong>Aspectos Práticos</strong>
+          O módulo mais operacional do curso - como utilizar prejuízo fiscal e créditos para abater dívidas, como reverter notas de CAPAG desfavoráveis e como desenhar a melhor estratégia de pagamento para cada perfil de cliente.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">10</div>
+        <div class="module-text">
+          <strong>Judicialização da Transação</strong>
+          Quando e como levar a transação ao Judiciário, com base em casos reais e jurisprudência dos tribunais superiores.
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">11</div>
+        <div class="module-text">
+          <strong>Transação Tributária e Reforma Tributária</strong>
+          O que muda (e o que permanece) com o novo sistema tributário, e como se preparar para o que vem pela frente.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section class="section section-light extras-section">
+  <div class="container">
+    <h2>E tem mais:</h2>
+    <ul class="arrow-list">
+      <li>Aulas gravadas no seu ritmo - assista quando e quantas vezes quiser</li>
+      <li>Material didático complementar - todo o material utilizado nas aulas, disponível para download</li>
+      <li>Aulas ao vivo via Zoom - sessões de tira-dúvidas com a Dra. Jussandra e participação de Convidados Especiais</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="section price-section">
+  <div class="container" style="text-align:center;">
+    <div class="price-box">
+      <div class="exclusive-badge">Condição exclusiva para quem adquiriu a aula introdutória</div>
+      <div class="price-from">R$ 1.297,00</div>
+      <div class="price-installments">12x de</div>
+      <div class="price-main">R$ 103,11</div>
+      <div class="price-or">ou</div>
+      <div class="price-cash">R$ 997,00 à vista</div>
+      <a href="https://pay.kiwify.com.br/y6koxFU" target="_blank" class="btn-primary">QUERO O CURSO COMPLETO COM CONDIÇÃO ESPECIAL</a>
+      <div class="trust-line">
+        <span class="trust-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Compra 100% segura
+        </span>
+        <span class="trust-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Garantia de 7 dias
+        </span>
+        <span class="trust-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Acesso imediato
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section class="section urgency-section">
+  <div class="container">
+    <p class="urgency-note">Essa condição especial só está disponível nesta página. Quando você sair, ela não aparecerá mais.</p>
+  </div>
+</section>
+
+<!-- SKIP -->
+<section class="section section-light skip-section">
+  <div class="container">
+    <h2>Não quer o curso completo agora? Sem problema.</h2>
+    <p class="skip-body">Você já tem acesso à aula <strong>"Transação Tributária na Prática: Fundamentos e Oportunidades"</strong>. Aproveite o conteúdo, aplique o que aprender, e quando sentir que quer aprofundar, a gente conversa.</p>
+    <p class="access-label">Acesse sua aula:</p>
+    <a href="#" class="btn-outline">ACESSAR MINHA AULA</a>
+    <p class="email-note">Ou confira o e-mail que acabou de chegar na sua caixa de entrada com os dados de acesso.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">Dúvidas?</div>
+  <div class="footer-contacts">
+    <span>E-mail: <a href="mailto:transacaotributaria360@gmail.com">transacaotributaria360@gmail.com</a></span>
+    <span>WhatsApp: <a href="https://wa.me/5551996521538">(51) 99652-1538</a></span>
+  </div>
+  <div class="trust-line">
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Compra 100% segura
+    </span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Suporte disponível
+    </span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Direitos reservados
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
