@@ -193,19 +193,15 @@ p:last-child { margin-bottom: 0; }
   transition: transform .2s, box-shadow .2s;
 }
 .module-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.25); }
-.module-card-photo {
-  width: 100%; aspect-ratio: 16/10; overflow: hidden; position: relative;
-}
-.module-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-.module-card-photo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(11,21,65,.55) 0%, rgba(11,21,65,.82) 100%);
-  display: flex; align-items: flex-start; padding: 16px;
+.module-card-header {
+  background: linear-gradient(135deg, rgba(255,148,79,.18) 0%, rgba(11,21,65,.6) 100%);
+  border-bottom: 1px solid rgba(255,148,79,.2);
+  padding: 28px 24px 20px;
+  display: flex; align-items: center;
 }
 .module-num {
-  background: var(--orange); color: var(--white);
-  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 6px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 36px; font-weight: 800; color: var(--orange); line-height: 1; opacity: .9;
 }
 .module-card-body { padding: 20px 22px 24px; }
 .module-card-title {
@@ -346,24 +342,19 @@ footer { background: var(--dark); padding: 28px 24px; text-align: center; font-s
   </div>
 </section>
 
-<!-- ══ PROBLEM (texto + foto lado a lado) ════════════════════════════════ -->
+<!-- ══ PROBLEM ════════════════════════════════════════════════════════════ -->
 <section class="section-white problem-section">
-  <div class="container-wide">
-    <div class="split-wrap">
-      <div>
-        <h2>Quantas vezes você já se deparou com um cliente com passivo tributário pesado e a única saída que veio à mente foi o contencioso?</h2>
-        <p class="lead">Discussão administrativa, ação judicial, recurso, embargos... e lá se vão anos até uma definição. O cliente frustrado, o escritório desgastado, e os honorários que mal compensam o tempo investido.</p>
-        <p class="lead">Agora pensa comigo: e se existisse um caminho mais rápido, com descontos reais, que resolve o passivo do cliente em meses, e que gera honorários por êxito e receita mensal para o seu escritório?</p>
-        <div class="problem-callout">
-          <p>Esse caminho existe. Chama-se transação tributária federal.</p>
-          <p>O problema é que a maioria dos advogados sabe que a transação existe, mas trava na hora de colocar em prática. Não sabe qual edital se aplica ao caso, não entende como o Fisco avalia a proposta, tem receio de prometer algo ao cliente e não conseguir executar. E acaba deixando passar uma oportunidade que, quem domina, está aproveitando todos os meses.</p>
-          <p>A boa notícia é que essa aula foi gravada justamente para resolver essa equação.</p>
-        </div>
-        <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO ASSISTIR AGORA</a>
-      </div>
-      <div class="split-photo">
-        <img src="hero.jpg" alt="Dra. Jussandra Hickmann" />
-      </div>
+  <div class="container">
+    <h2>Quantas vezes você já se deparou com um cliente com passivo tributário pesado e a única saída que veio à mente foi o contencioso?</h2>
+    <p class="lead">Discussão administrativa, ação judicial, recurso, embargos... e lá se vão anos até uma definição. O cliente frustrado, o escritório desgastado, e os honorários que mal compensam o tempo investido.</p>
+    <p class="lead">Agora pensa comigo: e se existisse um caminho mais rápido, com descontos reais, que resolve o passivo do cliente em meses, e que gera honorários por êxito e receita mensal para o seu escritório?</p>
+    <div class="problem-callout">
+      <p>Esse caminho existe. Chama-se transação tributária federal.</p>
+      <p>O problema é que a maioria dos advogados sabe que a transação existe, mas trava na hora de colocar em prática. Não sabe qual edital se aplica ao caso, não entende como o Fisco avalia a proposta, tem receio de prometer algo ao cliente e não conseguir executar. E acaba deixando passar uma oportunidade que, quem domina, está aproveitando todos os meses.</p>
+      <p>A boa notícia é que essa aula foi gravada justamente para resolver essa equação.</p>
+    </div>
+    <div class="btn-center" style="margin-top:0">
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO ASSISTIR AGORA</a>
     </div>
   </div>
 </section>
@@ -373,84 +364,47 @@ footer { background: var(--dark); padding: 28px 24px; text-align: center; font-s
   <div class="container-wide">
     <h2>O que você vai dominar nesta aula?</h2>
 
-    <div class="split-wrap reverse">
-      <div>
-        <p class="learn-intro">Essa aula foi conduzida pela Dra. Jussandra Hickmann - que atua com transação tributária desde 2020 e é reconhecida como uma das principais vozes do país sobre consensualidade fiscal.</p>
-        <p class="learn-intro">De forma clara e direta, ela cobre os pontos que fazem a diferença entre um advogado que apenas conhece o instituto e um que sabe operar ele com segurança.</p>
-      </div>
-      <div class="split-photo dark-shadow">
-        <img src="../transacao-tributaria-360/jussandra.png" alt="Dra. Jussandra Hickmann" />
-      </div>
-    </div>
+    <p class="learn-intro">Essa aula foi conduzida pela Dra. Jussandra Hickmann - que atua com transação tributária desde 2020 e é reconhecida como uma das principais vozes do país sobre consensualidade fiscal.</p>
+    <p class="learn-intro">De forma clara e direta, ela cobre os pontos que fazem a diferença entre um advogado que apenas conhece o instituto e um que sabe operar ele com segurança.</p>
 
     <div class="modules-grid">
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 01</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">01</span></div>
         <div class="module-card-body">
           <p class="module-card-title">Os fundamentos da transação tributária federal</p>
           <p class="module-card-desc">Como o instituto funciona na prática, muito além do texto da lei.</p>
         </div>
       </div>
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 02</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">02</span></div>
         <div class="module-card-body">
           <p class="module-card-title">A lógica da PGFN nas negociações</p>
           <p class="module-card-desc">Como o Fisco avalia o contribuinte, classifica o risco e define os termos do acordo.</p>
         </div>
       </div>
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 03</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">03</span></div>
         <div class="module-card-body">
           <p class="module-card-title">Quando a transação tributária é aplicável</p>
           <p class="module-card-desc">Como identificar se o caso do seu cliente se enquadra nos editais vigentes.</p>
         </div>
       </div>
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 04</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">04</span></div>
         <div class="module-card-body">
           <p class="module-card-title">Como funciona a transação por adesão</p>
           <p class="module-card-desc">O passo a passo para celebrar acordos com segurança jurídica.</p>
         </div>
       </div>
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 05</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">05</span></div>
         <div class="module-card-body">
           <p class="module-card-title">Os erros mais comuns ao operar o Regularize</p>
           <p class="module-card-desc">Como evitar cada um deles desde o primeiro caso.</p>
         </div>
       </div>
       <div class="module-card">
-        <div class="module-card-photo">
-          <img src="hero.jpg" alt="" />
-          <div class="module-card-photo-overlay">
-            <span class="module-num">Módulo 06</span>
-          </div>
-        </div>
+        <div class="module-card-header"><span class="module-num">06</span></div>
         <div class="module-card-body">
           <p class="module-card-title">Como transformar a transação tributária em receita para o escritório</p>
           <p class="module-card-desc">Com honorários por êxito e previsibilidade mensal.</p>
