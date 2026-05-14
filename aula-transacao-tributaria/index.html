@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aula: Transação Tributária Federal | Jussandra Hickmann</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0b1541;
+  --navy-d:  #080f30;
+  --orange:  #ff944f;
+  --orange-h:#e87c38;
+  --light:   #f0f1f0;
+  --dark:    #222023;
+  --muted:   #5a5a6a;
+  --border:  #dcdce0;
+  --white:   #ffffff;
+  --shadow:  0 4px 24px rgba(11,21,65,.12);
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--white);
+  color: var(--dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(23,37,97,.8) 0%, var(--navy) 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-photo-desktop {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-photo-desktop::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(to right, var(--navy) 0%, rgba(11,21,65,.9) 40%, transparent 100%);
+  z-index: 1;
+}
+.hero-photo-desktop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: .95;
+  display: block;
+}
+.hero-photo-mobile {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 55vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-photo-mobile::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 85%;
+  background: linear-gradient(to top, rgba(11,21,65,1) 0%, rgba(11,21,65,0.95) 25%, rgba(11,21,65,0.6) 55%, rgba(11,21,65,0) 100%);
+  z-index: 10;
+}
+.hero-photo-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: .9;
+  display: block;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+  padding-top: 52vh;
+  padding-bottom: 56px;
+}
+.hero-content {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,148,79,.15);
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,148,79,.3);
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(255,255,255,.72);
+  max-width: 520px;
+  margin-bottom: 36px;
+  line-height: 1.65;
+}
+.hero-sub strong { color: var(--white); }
+
+@media (min-width: 1024px) {
+  .hero-photo-desktop { display: block; }
+  .hero-photo-mobile  { display: none; }
+  .hero-inner {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 48px;
+    padding-right: 48px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .hero-content {
+    max-width: 56%;
+  }
+}
+
+/* BUTTONS */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border-radius: 10px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(255,148,79,.35);
+  transition: background .2s, transform .15s, box-shadow .2s;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .btn-primary {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+    padding: 16px 24px;
+    width: 100%;
+  }
+}
+.btn-primary:hover {
+  background: var(--orange-h);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255,148,79,.45);
+}
+.btn-primary:active { transform: none; }
+
+.btn-center { text-align: center; margin: 40px 0; }
+
+/* SECTIONS */
+section { padding: 80px 24px; }
+.container { max-width: 820px; margin: 0 auto; }
+.container-wide { max-width: 1040px; margin: 0 auto; }
+
+.section-light { background: var(--light); }
+.section-dark { background: var(--navy); color: var(--white); }
+.section-white { background: var(--white); }
+
+/* HEADINGS */
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 24px;
+}
+h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+p { margin-bottom: 16px; color: inherit; }
+p:last-child { margin-bottom: 0; }
+
+/* PROBLEM SECTION */
+.problem-section h2 { color: var(--navy); }
+.problem-section .lead {
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.75;
+  color: var(--dark);
+}
+.problem-section .problem-callout {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin: 40px 0;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.75;
+}
+.problem-section .problem-callout p { color: rgba(255,255,255,.85); }
+.problem-section .problem-callout p strong { color: var(--orange); }
+
+/* LEARN SECTION */
+.learn-section h2 { color: var(--white); }
+.learn-section .learn-intro {
+  color: rgba(255,255,255,.82);
+  font-size: 17px;
+  margin-bottom: 32px;
+  line-height: 1.75;
+}
+.arrow-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 32px 0;
+}
+.arrow-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.65;
+}
+.arrow-list.dark li { color: rgba(255,255,255,.85); }
+.arrow-list.light li { color: var(--dark); }
+.arrow-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  background: var(--orange);
+  border-radius: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+}
+
+/* FOR WHO */
+.for-who-section h2 { color: var(--navy); }
+.for-who-close {
+  font-size: clamp(15px, 2vw, 17px);
+  color: var(--dark);
+  margin-top: 8px;
+  line-height: 1.75;
+}
+
+/* INSTRUCTOR */
+.instructor-section { background: var(--light); }
+.instructor-section h2 { color: var(--navy); }
+.instructor-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 640px) {
+  .instructor-wrap {
+    grid-template-columns: 240px 1fr;
+  }
+}
+.instructor-photo {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 3/4;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(11,21,65,.18);
+}
+.instructor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.instructor-info h3 { color: var(--navy); margin-bottom: 8px; }
+.instructor-info .role {
+  color: var(--orange);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.instructor-info p { color: var(--dark); font-size: 15px; line-height: 1.75; margin-bottom: 14px; }
+
+/* PRICE SECTION */
+.price-section { background: var(--navy); text-align: center; }
+.price-section h2 { color: var(--white); }
+.price-box {
+  max-width: 480px;
+  margin: 32px auto 0;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,148,79,.3);
+  border-radius: 20px;
+  padding: 40px 36px;
+}
+.price-from {
+  color: rgba(255,255,255,.45);
+  font-size: 15px;
+  margin-bottom: 4px;
+  text-decoration: line-through;
+}
+.price-installments {
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 8px;
+}
+.price-main {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.price-or {
+  color: rgba(255,255,255,.45);
+  font-size: 13px;
+  margin: 10px 0;
+}
+.price-cash {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+}
+.trust-badge svg { flex-shrink: 0; }
+
+/* GUARANTEE */
+.guarantee-section { background: var(--white); text-align: center; }
+.guarantee-box {
+  max-width: 560px;
+  margin: 0 auto;
+  border: 2px solid var(--orange);
+  border-radius: 20px;
+  padding: 48px 40px;
+  background: rgba(255,148,79,.04);
+}
+.guarantee-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(255,148,79,.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: var(--orange);
+}
+.guarantee-box h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.guarantee-box p { color: var(--muted); font-size: 15px; line-height: 1.75; }
+
+/* FINAL CLOSING */
+.closing-section { background: var(--navy); text-align: center; }
+.closing-section h2 { color: var(--white); max-width: 700px; margin: 0 auto 24px; }
+.closing-sub { color: rgba(255,255,255,.65); font-size: 17px; margin-bottom: 40px; line-height: 1.75; }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  section { padding: 56px 20px; }
+  .hero { padding: 56px 20px 52px; }
+  .problem-section .problem-callout { padding: 28px 24px; }
+  .btn-primary { width: 100%; padding: 18px 24px; font-size: 14px; }
+  .price-main { font-size: 42px; }
+  .guarantee-box { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-gradient"></div>
+
+  <div class="hero-photo-desktop">
+    <img src="../transacao-tributaria-360/hero.jpg" alt="Dra. Jussandra Hickmann" />
+  </div>
+
+  <div class="hero-photo-mobile">
+    <img src="../transacao-tributaria-360/hero.jpg" alt="Dra. Jussandra Hickmann" />
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Aula Completa
+      </div>
+
+      <h1>
+        Descubra como a transação tributária federal pode se tornar o serviço mais <em>rentável</em> do seu escritório, com segurança jurídica para começar a atuar agora.
+      </h1>
+
+      <p class="hero-sub">
+        Acesso imediato à aula completa da <strong>Dra. Jussandra Hickmann</strong>, que já reduziu mais de <strong>R$ 950 milhões em passivos tributários</strong>. Entenda os fundamentos, as oportunidades e a lógica da PGFN para celebrar transações por adesão com confiança.
+      </p>
+
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO TER ACESSO À AULA COMPLETA</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-white problem-section">
+  <div class="container">
+    <h2>Quantas vezes você já se deparou com um cliente com passivo tributário pesado e a única saída que veio à mente foi o contencioso?</h2>
+
+    <p class="lead">Discussão administrativa, ação judicial, recurso, embargos... e lá se vão anos até uma definição. O cliente frustrado, o escritório desgastado, e os honorários que mal compensam o tempo investido.</p>
+
+    <p class="lead">Agora pensa comigo: e se existisse um caminho mais rápido, com descontos reais, que resolve o passivo do cliente em meses, e que gera honorários por êxito e receita mensal para o seu escritório?</p>
+
+    <div class="problem-callout">
+      <p>Esse caminho existe. Chama-se transação tributária federal.</p>
+      <p>O problema é que a maioria dos advogados sabe que a transação existe, mas trava na hora de colocar em prática. Não sabe qual edital se aplica ao caso, não entende como o Fisco avalia a proposta, tem receio de prometer algo ao cliente e não conseguir executar. E acaba deixando passar uma oportunidade que, quem domina, está aproveitando todos os meses.</p>
+      <p>A boa notícia é que essa aula foi gravada justamente para resolver essa equação.</p>
+    </div>
+
+    <div class="btn-center">
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO ASSISTIR AGORA</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="section-dark learn-section">
+  <div class="container">
+    <h2>O que você vai dominar nesta aula?</h2>
+
+    <p class="learn-intro">Essa aula foi conduzida pela Dra. Jussandra Hickmann - que atua com transação tributária desde 2020 e é reconhecida como uma das principais vozes do país sobre consensualidade fiscal.</p>
+
+    <p class="learn-intro">De forma clara e direta, ela cobre os pontos que fazem a diferença entre um advogado que apenas conhece o instituto e um que sabe operar ele com segurança.</p>
+
+    <ul class="arrow-list dark">
+      <li>Os fundamentos da transação tributária federal - como o instituto funciona na prática, muito além do texto da lei</li>
+      <li>A lógica da PGFN nas negociações - como o Fisco avalia o contribuinte, classifica o risco e define os termos do acordo</li>
+      <li>Quando a transação tributária é aplicável - como identificar se o caso do seu cliente se enquadra nos editais vigentes</li>
+      <li>Como funciona a transação por adesão - o passo a passo para celebrar acordos com segurança jurídica</li>
+      <li>Os erros mais comuns ao operar o Regularize - e como evitar cada um deles desde o primeiro caso</li>
+      <li>Como transformar a transação tributária em receita para o escritório - com honorários por êxito e previsibilidade mensal</li>
+    </ul>
+
+    <p style="color:rgba(255,255,255,.72); font-size:16px; line-height:1.75; margin-top:16px;">Tudo vindo de quem já viveu cada etapa desse processo na prática em negociações reais, com clientes reais, em cenários de alta complexidade.</p>
+
+    <div class="btn-center">
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO TER ACESSO AGORA</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="section-light for-who-section">
+  <div class="container">
+    <h2>Essa aula foi feita para quem está pronto para agir:</h2>
+
+    <ul class="arrow-list light">
+      <li>Advogados tributaristas que querem adicionar a transação tributária como serviço estratégico no escritório, e parar de depender exclusivamente do contencioso.</li>
+      <li>Advogados generalistas migrando para o tributário que precisam de um diferencial concreto para se posicionar frente a clientes empresariais.</li>
+      <li>Advogados recém-especializados que dominam a teoria, mas travam na hora de operar o Regularize, analisar editais e tomar decisões com convicção.</li>
+      <li>Sócios de escritórios de pequeno e médio porte que buscam uma nova fonte de receita, mais rápida e mais lucrativa que o contencioso tradicional.</li>
+      <li>Contadores que trabalham diretamente com empresas endividadas e querem ampliar a consultoria que oferecem sobre negociação de débitos federais.</li>
+    </ul>
+
+    <p class="for-who-close">Se você sente que a transação tributária é uma oportunidade real, mas ainda falta segurança técnica para dar o primeiro passo, essa aula é o atalho.</p>
+
+    <div class="btn-center">
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO COMEÇAR AGORA</a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="instructor-section">
+  <div class="container">
+    <div class="instructor-wrap">
+      <div>
+        <div class="instructor-photo">
+          <img src="../transacao-tributaria-360/jussandra.png" alt="Dra. Jussandra Hickmann" />
+        </div>
+      </div>
+      <div class="instructor-info">
+        <h2>Conheça quem vai conduzir você nessa aula:</h2>
+        <h3>Jussandra Hickmann</h3>
+        <div class="role">Advogada Tributarista</div>
+        <p>Jussandra Hickmann é advogada tributarista, professora de pós-graduação em Direito e Processo Tributário e uma das principais referências do Brasil em transação tributária.</p>
+        <p>Sua trajetória com o instituto começou em 2020, quando a Lei 13.988 entrou em vigor. Enquanto a maioria dos advogados ainda estava acompanhando de longe, ela decidiu atuar na prática - negociando diretamente com a PGFN, aprendendo a cada edital publicado, celebrando transações caso a caso.</p>
+        <p>Ao longo desses anos, ela conduziu inúmeras transações individuais, incluindo operações envolvendo grandes grupos econômicos, e ajudou a reduzir mais de R$ 950 milhões em passivos tributários.</p>
+        <p>Hoje, além de sócia-fundadora do escritório Hickmann Advogados Associados, ela ocupa a vice-presidência da Comissão Especial de Direito Tributário da OAB/RS, coordena o Núcleo de Pesquisa do CENAPRET e publica regularmente em veículos como Migalhas, Jota e Conjur.</p>
+        <p>Essa aula traz o que ela levou anos para aprender, condensado em aproximadamente 2 horas, com clareza, profundidade e aplicação prática.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price-section" id="inscricao">
+  <div class="container">
+    <h2>Por tempo limitado, o seu acesso completo sai por apenas:</h2>
+    <div class="price-box">
+      <div class="price-from">De: R$ 297,00</div>
+      <div class="price-installments">12x de</div>
+      <div class="price-main">R$ 10,03</div>
+      <div class="price-or">ou</div>
+      <div class="price-cash">R$ 97,00 à vista</div>
+      <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO MEU ACESSO AGORA</a>
+      <div class="trust-badges">
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Compra 100% segura
+        </span>
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Acesso imediato
+        </span>
+        <span class="trust-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Garantia de 7 dias
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="container">
+    <div class="guarantee-box">
+      <div class="guarantee-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h2>7 dias para assistir, avaliar e decidir.</h2>
+      <p>Você tem 7 dias de garantia incondicional. Assista à aula, acesse os materiais e, se por qualquer motivo sentir que o conteúdo não entregou o que você esperava, basta solicitar o reembolso e devolvemos 100% do seu investimento. Sem perguntas, sem burocracia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing-section">
+  <div class="container">
+    <h2>Enquanto a maioria dos advogados ainda está tentando entender a transação tributária por conta própria, lendo editais soltos, assistindo lives genéricas, baixando modelos de petição sem critério técnico, você pode aprender diretamente com quem já celebrou inúmeras transações e reduziu mais de R$ 950 milhões em passivos tributários.</h2>
+
+    <p class="closing-sub">Nesta aula, você vai ter a clareza que precisa para começar a atuar com transação tributária federal de verdade.<br>A pergunta é: quanto tempo mais você vai esperar?</p>
+
+    <div style="margin-bottom:16px;">
+      <div style="color:rgba(255,255,255,.55); font-size:15px; margin-bottom:4px;">12x de</div>
+      <div style="font-family:'Playfair Display',Georgia,serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:4px;">R$ 10,03</div>
+      <div style="color:var(--orange); font-size:18px; font-weight:700; margin-bottom:32px;">ou R$ 97,00 à vista</div>
+    </div>
+
+    <a href="https://pay.kiwify.com.br/RCUPB3O" target="_blank" class="btn-primary">QUERO MEU ACESSO AGORA</a>
+
+    <div class="trust-badges" style="justify-content:center; margin-top:20px;">
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Compra 100% segura
+      </span>
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Acesso imediato
+      </span>
+      <span class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Garantia de 7 dias
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Hickmann Advogados Associados
+</footer>
+
+</body>
+</html>
