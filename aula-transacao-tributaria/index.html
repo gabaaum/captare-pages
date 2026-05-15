@@ -182,9 +182,12 @@ p:last-child { margin-bottom: 0; }
   border: 1px solid rgba(255,148,79,.18);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform .3s ease, box-shadow .3s ease;
+  transition: transform .3s ease, box-shadow .3s ease, opacity .5s ease, translate .5s ease;
   cursor: default;
+  opacity: 0;
+  translate: 0 32px;
 }
+.module-card.visible { opacity: 1; translate: 0 0; }
 .module-card:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(0,0,0,.4); }
 .module-card-header {
   background: linear-gradient(135deg, rgba(255,148,79,.18) 0%, rgba(11,21,65,.6) 100%);
@@ -533,6 +536,20 @@ footer { background: var(--dark); padding: 28px 24px; text-align: center; font-s
 <footer>
   Hickmann Advogados Associados
 </footer>
+
+<script>
+const cards = document.querySelectorAll('.module-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const visible = document.querySelectorAll('.module-card.visible').length;
+      setTimeout(() => entry.target.classList.add('visible'), visible * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+cards.forEach(c => observer.observe(c));
+</script>
 
 </body>
 </html>
