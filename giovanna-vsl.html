@@ -124,6 +124,22 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
 .unmute-btn.hidden{display:none;}
 @keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3);}50%{box-shadow:0 0 0 6px rgba(255,255,255,.0);}}
 
+/* VIDEO TOAST */
+.vsl-toast{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);
+  background:rgba(0,0,0,.72);
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:700;
+  padding:12px 28px;border-radius:100px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .18s,transform .18s;
+  backdrop-filter:blur(8px);
+  z-index:20;
+  white-space:nowrap;
+}
+.vsl-toast.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+
 /* CTA */
 .cta-section{
   background:rgba(255,255,255,.03);
@@ -182,13 +198,14 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
       <div class="divider"></div>
       <p class="hero-sub">Neste breve video, a Giovanna Paino revela o metodo exato que ela usou para eliminar mais de 25kg apos a gravidez e como ajudou mais de 5.000 mulheres a alcançar o emagrecimento de forma duradoura e sem efeito rebote. Assista antes que saia do ar.</p>
       <div class="vsl-box">
-        <video id="vsl" autoplay muted playsinline preload="auto">
+        <video id="vsl" autoplay muted playsinline preload="auto" style="cursor:pointer;">
           <source src="giovanna-vsl.mp4" type="video/mp4">
         </video>
         <button class="unmute-btn" id="unmuteBtn" onclick="unmute()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
           Clique para ativar o som
         </button>
+        <div class="vsl-toast" id="vslToast"></div>
       </div>
     </div>
   </section>
@@ -201,6 +218,10 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--navy-d);color:var
 <script>
 var vsl = document.getElementById('vsl');
 var btn = document.getElementById('unmuteBtn');
+var toast = document.getElementById('vslToast');
+var toastTimer;
+var speeds = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+var speedIdx = 2; // começa em 1x
 
 function unmute() {
   vsl.muted = false;
@@ -208,12 +229,49 @@ function unmute() {
   btn.classList.add('hidden');
 }
 
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 900);
+}
+
+function togglePause() {
+  if (vsl.muted) { unmute(); return; }
+  if (vsl.paused) {
+    vsl.play();
+    showToast('▶');
+  } else {
+    vsl.pause();
+    showToast('⏸');
+  }
+}
+
+function changeSpeed(dir) {
+  speedIdx = Math.min(Math.max(speedIdx + dir, 0), speeds.length - 1);
+  vsl.playbackRate = speeds[speedIdx];
+  showToast(speeds[speedIdx] + 'x');
+}
+
+// Clique no vídeo pausa/retoma
+vsl.addEventListener('click', function(e) {
+  e.stopPropagation();
+  togglePause();
+});
+
+// Atalhos de teclado
+document.addEventListener('keydown', function(e) {
+  if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
+  if (e.code === 'Space') { e.preventDefault(); togglePause(); }
+  if (e.key === '+' || e.key === '=' || e.code === 'BracketRight') changeSpeed(1);
+  if (e.key === '-' || e.code === 'BracketLeft') changeSpeed(-1);
+});
+
 // Tenta autoplay com som (alguns browsers permitem)
 vsl.muted = false;
 vsl.play().then(function() {
   btn.classList.add('hidden');
 }).catch(function() {
-  // Browser bloqueou com som: mantém mutado e mostra botão
   vsl.muted = true;
   vsl.play();
 });
