@@ -441,21 +441,20 @@ function submitForm(btn) {
   btn.textContent = 'Enviando...'
   btn.disabled = true
 
-  try {
-    fetch(WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nome: nome, email: email, whatsapp: whatsapp,
-        utm_source:   wrap.querySelector('[name="utm_source"]').value,
-        utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
-        utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
-        utm_content:  wrap.querySelector('[name="utm_content"]').value
-      })
+  fetch(WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nome: nome, email: email, whatsapp: whatsapp,
+      utm_source:   wrap.querySelector('[name="utm_source"]').value,
+      utm_medium:   wrap.querySelector('[name="utm_medium"]').value,
+      utm_campaign: wrap.querySelector('[name="utm_campaign"]').value,
+      utm_content:  wrap.querySelector('[name="utm_content"]').value
     })
-  } catch(e) {}
-
-  window.top.location.href = OBRIGADO
+  })
+  .finally(function() {
+    window.top.location.href = OBRIGADO
+  })
 }
 
 // Envia altura real ao parent para redimensionar o iframe
