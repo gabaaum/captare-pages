@@ -155,21 +155,40 @@ p:last-child { margin-bottom: 0; }
 /* VSL */
 .vsl-wrap {
   margin: 32px 0;
-  background: var(--dark);
+  background: #000;
   border-radius: 14px;
   aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  position: relative;
   border: 1px solid var(--border);
 }
-.vsl-placeholder {
-  text-align: center;
-  color: rgba(255,255,255,.3);
-  font-size: 13px;
+.vsl-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
 }
-.vsl-placeholder svg { display: block; margin: 0 auto 10px; opacity: .3; }
+.vsl-sound-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .2s;
+  z-index: 10;
+}
+.vsl-sound-btn:hover { background: rgba(0,0,0,.85); }
 
 /* UPSELL INTRO */
 .upsell-intro {
@@ -397,8 +416,11 @@ footer {
 .footer-contacts a:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
-  .section { padding: 52px 20px; }
+  .hero { padding: 24px 20px 28px; }
+  .check-badge { width: 52px; height: 52px; margin-bottom: 12px; }
+  .section { padding: 32px 20px; }
   .price-box { padding: 28px 20px; }
+  .vsl-wrap { margin: 16px 0; }
 }
 </style>
 </head>
@@ -422,11 +444,17 @@ footer {
   <div class="container">
     <p class="upsell-intro">Antes de acessar sua aula, preciso te mostrar algo. São apenas 5 minutos, e pode mudar completamente o nível da sua atuação com transação tributária.</p>
 
-    <div class="vsl-wrap">
-      <div class="vsl-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-        VSL do Upsell | "Transação Tributária 360°: Estratégia, Técnica e Execução"
-      </div>
+    <div class="vsl-wrap" id="vsl-container">
+      <video id="vsl-video" muted playsinline preload="auto">
+        <source src="vsl.mp4" type="video/mp4">
+      </video>
+      <button class="vsl-sound-btn" id="vsl-sound" onclick="toggleSound()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        ATIVAR SOM
+      </button>
+      <button class="vsl-sound-btn" id="vsl-speed" onclick="cycleSpeed()" style="bottom:16px;right:auto;left:16px;">
+        1x
+      </button>
     </div>
 
     <a href="https://pay.kiwify.com.br/y6koxFU" target="_blank" class="btn-primary">QUERO CONHECER O CURSO COMPLETO COM CONDIÇÃO ESPECIAL</a>
@@ -616,5 +644,69 @@ footer {
   </div>
 </footer>
 
+<script>
+(function() {
+  var video = document.getElementById('vsl-video');
+  var btn   = document.getElementById('vsl-sound');
+  var wrap  = document.getElementById('vsl-container');
+
+  // Overlay: botão play visível para desbloqueio em mobile
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;';
+  overlay.innerHTML = '<div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.88);display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,0.35);"><svg width="28" height="28" viewBox="0 0 24 24" fill="#0b1541"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>';
+  wrap.appendChild(overlay);
+
+  function doPlay() {
+    var p = video.play();
+    if (p && p.then) {
+      p.then(function() { overlay.style.display = 'none'; }).catch(function() {});
+    } else {
+      overlay.style.display = 'none';
+    }
+  }
+
+  // Autoplay ao entrar na viewport (funciona em desktop e Android)
+  var tried = false;
+  new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !tried) {
+      tried = true;
+      doPlay();
+    }
+  }, { threshold: 0.2 }).observe(wrap);
+
+  // Tap no overlay: desbloqueio manual (iOS Safari)
+  overlay.addEventListener('click', function() {
+    overlay.style.display = 'none';
+    doPlay();
+  });
+
+  // Clique no vídeo: pause / resume
+  video.addEventListener('click', function() {
+    if (video.paused) { video.play().catch(function(){}); }
+    else              { video.pause(); }
+  });
+
+  // Esconde overlay ao iniciar reprodução
+  video.addEventListener('playing', function() { overlay.style.display = 'none'; });
+
+  var speeds = [1, 1.25, 1.5, 2];
+  var speedIdx = 0;
+  var speedBtn = document.getElementById('vsl-speed');
+  window.cycleSpeed = function() {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    video.playbackRate = speeds[speedIdx];
+    speedBtn.textContent = speeds[speedIdx] + 'x';
+  };
+
+  window.toggleSound = function() {
+    video.muted = !video.muted;
+    if (!video.muted) {
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> SOM ATIVADO';
+    } else {
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg> ATIVAR SOM';
+    }
+  };
+})();
+</script>
 </body>
 </html>
