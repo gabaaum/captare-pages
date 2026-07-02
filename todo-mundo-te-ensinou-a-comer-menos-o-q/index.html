@@ -65,11 +65,11 @@ section{padding:64px 20px}
 /* Autor / Sobre — foto à esquerda + texto à direita */
 .autor-layout{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
 .autor-foto{width:100%;max-width:320px;border-radius:18px;overflow:hidden;flex-shrink:0;align-self:center}
-.autor-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.autor-foto img{width:100%;height:auto;object-fit:contain;display:block}
 .autor-texto{flex:1;min-width:0}
 @media(min-width:860px){
   .autor-layout{flex-direction:row;gap:44px;align-items:center}
-  .autor-foto{width:38%;max-width:380px;align-self:stretch}
+  .autor-foto{width:38%;max-width:380px;align-self:center}
 }
 
 /* Marquee */
